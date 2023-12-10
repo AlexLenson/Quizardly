@@ -9,12 +9,6 @@ const quizSchema = new Schema({
         type: String,
         required: true
     },
-    questions: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Question'
-        }
-    ],
 });
 
 const Quiz = model('Quiz', quizSchema);

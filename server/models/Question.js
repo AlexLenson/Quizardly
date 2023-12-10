@@ -2,7 +2,8 @@ const { Schema, model } = require('mongoose');
 
 const questionSchema = new Schema({
     category: {
-        type: String
+        type: String,
+        required: true
     },
     question: {
         type: String,
@@ -14,7 +15,8 @@ const questionSchema = new Schema({
     },
     incorrect: [
         {
-            type: String
+            type: String,
+            required: true
         }
     ],
     quiz: [
