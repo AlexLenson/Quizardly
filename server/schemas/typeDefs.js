@@ -1,10 +1,9 @@
 const typeDefs = `
   type User {
     _id: ID
-    username: String
-    email: String
+    name: String
     password: String
-    thoughts: [Thought]!
+    score: String
   }
 
   type Thought {
