@@ -5,6 +5,14 @@ const questionSchema = new Schema({
         type: String,
         required: true
     },
+    type: {
+        type: String,
+        required: false
+    },
+    difficulty: {
+        type: String,
+        required: false
+    },
     question: {
         type: String,
         required: true
