@@ -16,6 +16,7 @@ const userSchema = new Schema({
   score: {
     type: Number,
     required: false,
+    default: 0,
   },
   quiz: [
     {
