@@ -9,11 +9,11 @@ const questionSchema = new Schema({
         type: String,
         required: true
     },
-    correct: {
+    correct_answer: {
         type: String,
         required: true
     },
-    incorrect: [
+    incorrect_answers: [
         {
             type: String,
             required: true
