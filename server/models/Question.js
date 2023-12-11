@@ -5,15 +5,23 @@ const questionSchema = new Schema({
         type: String,
         required: true
     },
+    type: {
+        type: String,
+        required: false
+    },
+    difficulty: {
+        type: String,
+        required: false
+    },
     question: {
         type: String,
         required: true
     },
-    correct: {
+    correct_answer: {
         type: String,
         required: true
     },
-    incorrect: [
+    incorrect_answers: [
         {
             type: String,
             required: true
