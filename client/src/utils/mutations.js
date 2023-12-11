@@ -26,6 +26,7 @@ export const ADD_USER = gql`
 
 
 export const EDIT_USER = gpl`
+
 `;
 
 
