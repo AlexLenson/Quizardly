@@ -32,10 +32,12 @@ const typeDefs = `
   }
 
   type Query {
-    users: [User]
-    user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
+    getUsers: [User]
+    getUserByID(userID: ID!): User
+    getQuizzes: [Quiz]
+    getQuizByID(quizID: ID!): Quiz
+    getQuestions: [Question]
+    getQuestionByID(questionID: ID!): Question
     me: User
   }
 
