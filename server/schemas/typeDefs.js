@@ -42,12 +42,14 @@ const typeDefs = `
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addUser(name: String!, password: String!): Auth
+    loginUser(name: String!, password: String!): Auth
+    createQuiz(userID: ID!, name: String!): Quiz
+    updateQuiz(quizID: ID!, name: String!): Quiz
+    deleteQuiz(quizID: ID!): Quiz
+    createQuestion(category: String!, type: String, difficulty: String, question: String!, correct_answer: String!, incorrect_answers: [String!]): Question
+    updateQuestion(questionId: ID!, category: String, type: String, difficulty: String, question: String, correct_answer: String, incorrect_answers: [String!]): Question
+    deleteQuestion(questionId: ID!): Question
   }
 `;
 
