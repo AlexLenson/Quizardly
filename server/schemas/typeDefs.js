@@ -1,24 +1,29 @@
 const typeDefs = `
   type User {
     _id: ID
+    name: String!
+    password: String!
+    score: Int
+    quiz: [Quiz]
+    question: [Question]
+  }
+
+  type Quiz {
+    _id: ID
+    user: User
     name: String
-    password: String
-    score: String
   }
 
-  type Thought {
+  type Question {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
-  }
-
-  type Comment {
-    _id: ID
-    commentText: String
-    commentAuthor: String
-    createdAt: String
+    category: String!
+    type: String
+    difficulty: String
+    question: String!
+    correct_answer: String!
+    incorrect_answers: String!
+    quiz: [Quiz]
+    user: User
   }
 
   type Auth {
