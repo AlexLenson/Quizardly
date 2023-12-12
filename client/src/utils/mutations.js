@@ -1,55 +1,58 @@
 import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
-  mutation login($name: String!, $password: String!) {
-    login(name: $name, password: $password) {
-      token
-      user {
-        _id
-        name
-      }
+mutation LoginUser($username: String!, $password: String!) {
+  loginUser(username: $username, password: $password) {
+    token
+    user {
+      username
     }
   }
+}
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $password: String!) {
-    addUser(username: $username, password: $password) {
-      token
-      user {
-        _id
-       name
-      }
+mutation addUser($username: String!, $password: String!) {
+  addUser(username: $username, password: $password) {
+    user {
+      _id
+      username
+      password
     }
+    token
   }
+}
 `;
 
 
 
-export const ADD_QUIZ = gql`
-  mutation addQuiz($name: String!, $category: String!) {
-    addQuiz(name: $name, category: $category) {
-      _id
-      name
-      category
-      user {
-        _id
-        name
+export const CREATE_QUIZ = gql`
+mutation createQuiz($title: String!, $category: String!, $questionIds: [ID!], $description: String) {
+  createQuiz(title: $title, category: $category, questionIds: $questionIds, description: $description) {
+    username
+    
+    quizzes {
+      title
+      description
+      questions {
+        question
       }
     }
+
   }
+}
 `;
 
-export const ADD_QUESTION = gql`
-  mutation addQuestion($name: String!, $category: String!) {
-    addQuestion(name: $name, category: $category) {
-      _id
-      name
-      category
-      user {
-        _id
-        name
-      }
-    }
+export const CREATE_QUESTION = gql`
+mutation CreateQuestion($category: String!, $type: String, $difficulty: String, $question: String!, $correctAnswer: String!, $incorrectAnswers: [String!]) {
+  createQuestion(category: $category, type: $type, difficulty: $difficulty, question: $question, correct_answer: $correctAnswer, incorrect_answers: $incorrectAnswers) {
+    _id
+    category
+    type
+    difficulty
+    question
+    correct_answer
+    incorrect_answers
   }
+}
 `;

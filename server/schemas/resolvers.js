@@ -52,7 +52,7 @@ const resolvers = {
 
       return { token, user };
     },
-    createQuiz: async (parent, { title, description, questionIds, category, difficulty }, context) => {
+    createQuiz: async (parent, { title, description, questionIds, category, }, context) => {
       try {
 
         const quiz = await Quiz.create({
@@ -60,7 +60,6 @@ const resolvers = {
           description,
           questions: questionIds,
           category,
-          difficulty,
           createdBy: context.user._id
         });
         const savedQuiz = await quiz.save();
