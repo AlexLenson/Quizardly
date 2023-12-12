@@ -10,7 +10,7 @@ const resolvers = {
       return User.findById(userId).populate('quizzes');
     },
     getQuizzes: async () => {
-      return Quiz.find();
+      return Quiz.find().populate('User');
     },
     getQuiz: async (parent, { quizId }) => {
       return Quiz.findById(quizId);
@@ -84,15 +84,26 @@ const resolvers = {
         throw new Error('Could not create quiz');
       }
     },
-    updateQuiz: async (parent, { quizId, quizName }, context) => {
+    updateQuiz: async (parent, { quizId, title, description, questionIds }, context) => {
       try {
 
-        const quiz = await Quiz.findOneAndUpdate(
+        const updatedQuiz = await Quiz.findOneAndUpdate(
           { _id: quizId },
-          { $set: { quizName: quizName } },
+          {
+            $set: {
+              title,
+              description,
+              questions: questionIds
+            }
+          },
           { new: true }
         );
-        return quiz;
+
+        if (!updatedQuiz) {
+          throw new Error('Quiz not found')
+        };
+
+        return updatedQuiz;
       } catch (error) {
         throw new Error('Could not update quiz');
       }

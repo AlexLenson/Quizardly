@@ -6,8 +6,8 @@ const cleanDB = require('./cleanDB');
 
 db.once('open', async () => {
   try {
-    await cleanDB('user');
-    await cleanDB('question');
+    await cleanDB('users');
+    await cleanDB('questions');
     await cleanDB('quizzes');
 
     await User.create(userSeeds);
