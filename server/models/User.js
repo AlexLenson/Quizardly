@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-  name: {
+  username: {
     type: String,
     required: true,
     unique: true,
@@ -18,18 +18,12 @@ const userSchema = new Schema({
     required: false,
     default: 0,
   },
-  quiz: [
+  quizzes: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Quiz',
     },
-  ],
-  question: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Question',
-    },
-  ],
+  ]
 });
 
 userSchema.pre('save', async function (next) {
