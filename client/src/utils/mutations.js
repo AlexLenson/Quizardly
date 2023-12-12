@@ -25,16 +25,10 @@ export const ADD_USER = gql`
 `;
 
 
-export const EDIT_USER = gpl`
-
-`;
-
-
-
 
 export const ADD_QUIZ = gql`
-  mutation addThought($name: String!, $category: String!) {
-    addThought(name: $name, category: $category) {
+  mutation addQuiz($name: String!, $category: String!) {
+    addQuiz(name: $name, category: $category) {
       _id
       name
       category
@@ -47,8 +41,8 @@ export const ADD_QUIZ = gql`
 `;
 
 export const ADD_QUESTION = gql`
-  mutation addThought($name: String!, $category: String!) {
-    addThought(name: $name, category: $category) {
+  mutation addQuestion($name: String!, $category: String!) {
+    addQuestion(name: $name, category: $category) {
       _id
       name
       category

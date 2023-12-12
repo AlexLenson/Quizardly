@@ -7,8 +7,8 @@ import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const ThoughtForm = () => {
-  const [thoughtText, setThoughtText] = useState('');
+const QuizForm = () => {
+  const [quizName, setThoughtText] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
 
@@ -29,7 +29,7 @@ const ThoughtForm = () => {
         variables: {
           thoughtText,
           // Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username 
-          thoughtAuthor: Auth.getProfile().authenticatedPerson.username
+          user: Auth.getProfile().authenticatedPerson.username
         },
       });
 
@@ -50,7 +50,7 @@ const ThoughtForm = () => {
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
+      <h3>Create Your Quiz!</h3>
 
       {Auth.loggedIn() ? (
         <>
@@ -59,7 +59,7 @@ const ThoughtForm = () => {
               characterCount === 280 || error ? 'text-danger' : ''
             }`}
           >
-            Character Count: {characterCount}/280
+        
           </p>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
@@ -67,18 +67,31 @@ const ThoughtForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="thoughtText"
-                placeholder="Here's a new thought..."
-                value={thoughtText}
+                name="quizName"
+                placeholder="Quiz Name"
+                value={quizName}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></textarea>
             </div>
 
+            <div>
+            {/* map over question that  with inLine button to add to quiz*/}
+            
+            </div>
+
+            <div>
+            {/* question form */}
+            </div>
+
+            <div>
+            {/* Map over questions added to THIS quiz and remove questions */}
+             </div>
+
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Thought
+                Create Quiz
               </button>
             </div>
             {error && (
