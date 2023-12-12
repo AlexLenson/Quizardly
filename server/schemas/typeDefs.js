@@ -1,17 +1,19 @@
 const typeDefs = `
   type User {
     _id: ID
-    name: String!
+    username: String!
     password: String!
     score: Int
-    quiz: [Quiz]
-    question: [Question]
+    quizzes: [Quiz]
   }
 
   type Quiz {
     _id: ID
-    user: User
-    name: String
+    title: String!
+    description: String
+    questions: [Question]!
+    createdBy: User!
+    category: String!
   }
 
   type Question {
@@ -21,9 +23,7 @@ const typeDefs = `
     difficulty: String
     question: String!
     correct_answer: String!
-    incorrect_answers: String!
-    quiz: [Quiz]
-    user: User
+    incorrect_answers: [String!]
   }
 
   type Auth {
@@ -33,19 +33,19 @@ const typeDefs = `
 
   type Query {
     getUsers: [User]
-    getUserByID(userID: ID!): User
+    getUser(userId: ID!): User
     getQuizzes: [Quiz]
-    getQuizByID(quizID: ID!): Quiz
+    getQuiz(quizId: ID!): Quiz
     getQuestions: [Question]
-    getQuestionByID(questionID: ID!): Question
+    getQuestion(questionId: ID!): Question
     me: User
   }
 
   type Mutation {
-    addUser(name: String!, password: String!): Auth
-    loginUser(name: String!, password: String!): Auth
-    createQuiz(userID: ID!, name: String!): Quiz
-    updateQuiz(quizID: ID!, name: String!): Quiz
+    addUser(username: String!, password: String!): Auth
+    loginUser(username: String!, password: String!): Auth
+    createQuiz(title: String!, description: String, category: String!, questionIds: [ID!]): User
+    updateQuiz(quizID: ID!, title: String!): Quiz
     deleteQuiz(quizID: ID!): Quiz
     createQuestion(category: String!, type: String, difficulty: String, question: String!, correct_answer: String!, incorrect_answers: [String!]): Question
     updateQuestion(questionId: ID!, category: String, type: String, difficulty: String, question: String, correct_answer: String, incorrect_answers: [String!]): Question

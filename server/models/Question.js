@@ -26,17 +26,7 @@ const questionSchema = new Schema({
             type: String,
             required: true
         }
-    ],
-    quiz: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Quiz'
-        }
-    ],
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
+    ]
 });
 
 const Question = model('Question', questionSchema);
