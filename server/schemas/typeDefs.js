@@ -1,24 +1,29 @@
 const typeDefs = `
   type User {
     _id: ID
-    name: String
-    password: String
-    score: String
+    username: String!
+    password: String!
+    score: Int
+    quizzes: [Quiz]
   }
 
-  type Thought {
+  type Quiz {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
+    title: String!
+    description: String
+    questions: [Question]!
+    createdBy: User!
+    category: String!
   }
 
-  type Comment {
+  type Question {
     _id: ID
-    commentText: String
-    commentAuthor: String
-    createdAt: String
+    category: String!
+    type: String
+    difficulty: String
+    question: String!
+    correct_answer: String!
+    incorrect_answers: [String!]
   }
 
   type Auth {
@@ -27,20 +32,24 @@ const typeDefs = `
   }
 
   type Query {
-    users: [User]
-    user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
+    getUsers: [User]
+    getUser(userId: ID!): User
+    getQuizzes: [Quiz]
+    getQuiz(quizId: ID!): Quiz
+    getQuestions: [Question]
+    getQuestion(questionId: ID!): Question
     me: User
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addUser(username: String!, password: String!): Auth
+    loginUser(username: String!, password: String!): Auth
+    createQuiz(title: String!, description: String, category: String!, questionIds: [ID!]): User
+    updateQuiz(quizID: ID!, title: String!): Quiz
+    deleteQuiz(quizID: ID!): Quiz
+    createQuestion(category: String!, type: String, difficulty: String, question: String!, correct_answer: String!, incorrect_answers: [String!]): Question
+    updateQuestion(questionId: ID!, category: String, type: String, difficulty: String, question: String, correct_answer: String, incorrect_answers: [String!]): Question
+    deleteQuestion(questionId: ID!): Question
   }
 `;
 
