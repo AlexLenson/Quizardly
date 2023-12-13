@@ -28,7 +28,7 @@ const Quiz = () => {
     const choices = quiz.questions[index].incorrect_answers.push(correct_answer);
 
     //shuffle array function
-    const shuffleArray = (array) => {
+    const shuffleArray = async (array) => {
       const shuffledArray = [...array];
       for (let i = shuffledArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -45,9 +45,9 @@ const Quiz = () => {
   //On choice click, check the selected answer agains the questions correct answer. Then go to the next question.
   const handleAnswerClick = (selectedAnswer, index) => {
     if (selectedAnswer == quiz.questions[index].correct_answer) {
-      setScore(score + 1);
+      const scoreUp = score + 1;
+      setScore(scoreUp);
     }
-    setUserAnswers(updatedAnswers);
     NextQuestion();
   };
 
@@ -68,7 +68,7 @@ const Quiz = () => {
       {showScore ? (
         <div className="result-container">
           <h2>
-            Your Score: {score} out of {questions.length}
+            Your Score: {score} 
           </h2>
         </div>
       ) : (
@@ -90,7 +90,7 @@ const Quiz = () => {
           <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
             <ul>
               {multipleChoice(currentQuestion).map((answer, index) => (
-                <button key="index" onClick={()=> handleAnswerClick(answer,currentQuestion)}> <li key={index}>{answer}</li></button>
+                <button key={index} onClick={()=> handleAnswerClick(answer, currentQuestion)}><li key={index}>{answer}</li></button>
               ))} 
             </ul>
           </div>

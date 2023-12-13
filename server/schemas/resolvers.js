@@ -69,6 +69,7 @@ const resolvers = {
           { $push: { quizzes: savedQuiz._id } },
           { new: true }
         );
+        
         await user.populate({
           path: "quizzes",
           model: "Quiz",
