@@ -17,9 +17,12 @@ import Music from '../assets/MusicImage.jpg'
 import Food from '../assets/FoodImage.jpg'
 import Geography from '../assets/GeographyImage.jpg'
 import Sports from '../assets/TVImage.jpg'
+import './Home.css'
 
 
-const CarouselCategoryImages = [General, History, Games, TVMovies, Literature, Tech, Science, Math, PopCulture, Music, Food, Geography, Sports ]
+const CarouselCategoryImages = [General, History, Games, TVMovies, Literature, Tech, Science, Math, PopCulture, Music, Food, Geography, Sports ];
+const Categories = ["General", "History"," Games", "TVMovies", "Literature"," Tech", "Science", "Math", "PopCulture", "Music"," Food", "Geography", "Sports" ]
+
 
 const Home = () => {
     
@@ -28,12 +31,13 @@ const Home = () => {
         <div className="hero-overlay">
             
             <img src={Quizardly} alt="Narvin" className="hero-image"/>
-            
+            <h1 className="homeh1">Quizzes by Category</h1>
             <div className="carousel-cat">
             <QuizCategoryCarousel images={CarouselCategoryImages}/>
             </div>
+            <h1 className="homeh1">User Quizzes</h1>
             <div className="carousel-quiz">
-            <CategoryCarousel images={CarouselCategoryImages}/>
+            <CategoryCarousel images={CarouselCategoryImages} categories={Categories}/>
             </div>
            
                 

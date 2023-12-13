@@ -8,12 +8,14 @@ import Auth from '../utils/auth';
 
 const Profile = () => {
   const { profileId } = useParams();
+  console.log("profileId:", profileId);
 
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: profileId },
+  const { loading, data } = useQuery(profileId ? QUERY_USER : QUERY_ME, {
+    variables: { userId: profileId },
   });
 
-  const user = data?.me || data?.user || {};
+  const user = data?.me || data?.getUser || {};
+  console.log("user", user);
   if (
     Auth.loggedIn() && 
     /* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username, and compare it to the userParam variable */

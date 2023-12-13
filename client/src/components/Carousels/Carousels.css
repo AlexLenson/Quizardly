@@ -1,5 +1,10 @@
+.carousel-slide {
+  position: relative;
+}
+
 .carousel-image-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%; /* Set the height of the container */
@@ -8,6 +13,16 @@
   
   /* Style for each carousel image */
   .carousel-image {
-    max-width: 300px; /* Ensure the image doesn't exceed the container width */
-    max-height: 300px; /* Ensure the image doesn't exceed the container height */
+    max-width: 250px; /* Ensure the image doesn't exceed the container width */
+    max-height: 250px; /* Ensure the image doesn't exceed the container height */
   }
+
+  .carousel-text {
+    position: absolute;
+    top: 10px; /* Adjust the top spacing of the text */
+    color: white; /* Text color */
+    font-size: 18px; /* Adjust the font size of the text */
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 10px; /* Adjust padding */}

@@ -9,7 +9,7 @@ const Quiz = () => {
   const { quizId } = useParams();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [showScore, setShowScore] = useState(false);
+  const [showScore, setShowScore] = useState(true);
 
   const { loading, data } = useQuery(QUERY_SINGLE_QUIZ, {
     // pass URL parameter
@@ -80,7 +80,7 @@ const Quiz = () => {
     ) :showScore ? (
         <div className="result-container">
           <h2>Your Score: {score}</h2>
-          
+            <h3>This quiz was made by: <a href={`../profiles/${quiz.createdBy._id}`}>{quiz.createdBy.username}</a></h3>
         </div>
       ) : (
         <div className="my-3">
