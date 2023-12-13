@@ -13,40 +13,29 @@ import { useState } from "react";
 
 const CreateQuiz = () => {
   const [quizTitle, setQuizTitle] = useState("");
-  const [catagory, setCatagory] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-   
+
     switch (name) {
-        case "questionText":
-    
-  
-          break;
-        case "correct":
-        
-  
-          break;
-        case "incorrect1":
-          
-  
-          break;
-  
-        case "incorrect2":
-        
-  
-          break;
-        default:
-        
-          break;}
+      case "quizTitle":
+        setQuizTitle(value);
+        break;
+      case "category":
+        setCategory(value);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
     <div>
-        <h2>Create a Quiz</h2>
+      <h2>Create a Quiz</h2>
       <div className="col-9 col-lg-9 ">
         <input
-          name="title"
+          name="quizTitle"
           placeholder="Quiz Title"
           value={quizTitle}
           className=" w-100"
@@ -59,7 +48,7 @@ const CreateQuiz = () => {
             <Select
               labelId="dropDown-label"
               id="dropDown"
-              value={catagory}
+              value={category}
               label="Category"
               onChange={handleChange}
             >
