@@ -33,7 +33,7 @@ const Home = () => {
             <img src={Quizardly} alt="Narvin" className="hero-image"/>
             <h1 className="homeh1">Quizzes by Category</h1>
             <div className="carousel-cat">
-            <QuizCategoryCarousel images={CarouselCategoryImages}/>
+            <QuizCategoryCarousel images={CarouselCategoryImages} categories={Categories}/>
             </div>
             <h1 className="homeh1">User Quizzes</h1>
             <div className="carousel-quiz">

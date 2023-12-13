@@ -1,170 +1,19 @@
-/* nav {
-    
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: white;
-    position: fixed;
-    top: 0;
-    background-color: black;
-    width: 100%;
-    height: %;
-    z-index: 99;
-    padding: 0 0 0 0;
-    border-bottom: 1px solid rgba(184, 184, 184, 0.384);
-}
-
-.scrolled {
-    backdrop-filter: blur(5px);
-}
-
-
-.menu{
-    display: flex;
-  ;
-}
-
-.menu > li {
-    padding:  0.75rem;
-    font-size: rem;
-    font-weight: 600;
-}
-
-.tophead > h1  {
-    display: flex;
-}
-
-.name-logo { 
-    font-family: 'Space Mono', monospace;
-    font-size: 1.7em;
-}
-
-.blink{
-    height: 2rem;
-    width: 15px;
-    animation: blink .5s step-end infinite alternate;
-    white-space: nowrap;
-    overflow: hidden;
-    border-bottom: 3px solid white;
-    display: block;
-}
-
-@keyframes blink {
-    50% {
-      border-color: transparent
-    }
-  }
-
-  .menu-btn {
-    display: none;
-}
-
-
-.scroll-to-top {
-    position: fixed;
-    bottom: 3%;
-    right: 3%;
-    display: none;
-}
-
-/* for mobile and tablet devices */
-
-@media only screen and (max-width: 768px) {
-
-    nav {
-        padding: 5% 0 0 5%;
-        flex-direction: column;
-        align-items: flex-start;
-        position: static;
-        background: transparent ;
-        backdrop-filter: blur(0);
-        width: auto;
-    }
-
-    .menu {
-        margin: 40% 15% !important;
-        padding: 0;
-        transition: transform 0.5s ease-in-out;
-        display: none;
-    }
-
-    .menu > li {
-        font-size: 1.5rem;
-        padding: 0;
-    }
-
-    .tophead > h1 {
-        margin: 0;
-        display: flex;
-    }
-
-
-.name-logo {
-    font-size: 1.2em;
-}
-
-.blink {
-    height: 1.8rem;
-}
-
-
-.tophead {
-    
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.menu-btn {
-    display: block;
-  
-    width: 25px;
-    height: 25px;
-    background-size: cover;
-    margin-right: 5%;
-}
-
-.opened-btn {
-  
-    width: 25px;
-    height: 25px;
-    margin-right: 10%;
-}
-
-
-.open {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-
-}
-
-.nav-open {
-    transition: all 0.3s ease-in-out;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    height: 110vh;
-    position: fixed;
-    width: 100%;
-    justify-content: flex-start;
-}
-
-
-.scroll-true {
-    z-index: 99;
-    background-color: #ffffff;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    align-items: center;
-    justify-content: center;
+.buttonstyle {
+    padding: 0.6em 2em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    display: flex;
- }
-}
-
+    position: relative;
+    z-index: 0;
+    border-radius: 20px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  
 .quizardly {
     width:65px ;
     height: 65px; 
@@ -188,3 +37,9 @@ button:hover{
 }
  
  */
+
+ .q-logo {
+    display: flex;
+    justify-content: flex-start;
+ }
+
