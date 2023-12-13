@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
-
-import { ADD_QUESTION } from "../../utils/mutations";
+import Button from '@mui/material/Button'
+import { CREATE_QUESTION } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 import auth from "../../utils/auth";
@@ -14,7 +14,7 @@ const QuestionForm = () => {
   const [incorrect2Text, setIncorrect2] = useState("");
   const [incorrect3Text, setIncorrect3] = useState("");
 
-  const [createQuestion, { error }] = useMutation(ADD_QUESTION);
+  const [createQuestion, { error }] = useMutation(CREATE_QUESTION);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -41,18 +41,35 @@ const QuestionForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === "questionText" && value.length <= 280) {
-      setQuestionText(value);
-    
+    switch (name) {
+      case "questionText":
+        setQuestionText(value);
+
+        break;
+      case "correct":
+        setCorrect(value);
+
+        break;
+      case "incorrect1":
+        setIncorrect1(value);
+
+        break;
+
+      case "incorrect2":
+        setIncorrect2(value);
+
+        break;
+      default:
+        setIncorrect3(value);
+        break;
     }
   };
 
   return (
     <div>
-     
       {!Auth.loggedIn() ? (
-        <> 
-        <h4>Create A Question</h4>
+        <>
+          <h4>Create A Question</h4>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
@@ -61,7 +78,7 @@ const QuestionForm = () => {
             <div className="col-12 col-lg-12">
               <textarea
                 name="questionText"
-                placeholder="What do you want to"
+                placeholder="What do you want to ask?"
                 value={questionText}
                 className="form-input w-100"
                 style={{ lineHeight: "1.5", resize: "vertical" }}
@@ -72,13 +89,14 @@ const QuestionForm = () => {
             <div>{/* Radial buttons to choose between True/False or Multiple Choice */}</div>
 
             <div className="col-12 col-lg-12">
+              <h5>What are the answers?{"(Enter the correct answer first)"} </h5>
               <ul>
                 {/* correct answer */}
                 <li>
                   <div className="col-12 col-lg-12">
                     <input
                       name="correct"
-                      placeholder="Add the Right Answer here"
+                      placeholder="Enter the RIGHT answer here!"
                       value={correctText}
                       className="form-input w-100"
                       style={{ lineHeight: "1.5", resize: "vertical" }}
@@ -91,7 +109,7 @@ const QuestionForm = () => {
                   <div className="col-12 col-lg-12">
                     <input
                       name="incorrect1"
-                      placeholder="Add a wrong answer here"
+                      placeholder="Enter a WRONG answer here!"
                       value={incorrect1Text}
                       className="form-input w-100"
                       style={{ lineHeight: "1.5", resize: "vertical" }}
@@ -103,7 +121,7 @@ const QuestionForm = () => {
                   <div className="col-12 col-lg-12">
                     <input
                       name="incorrect2"
-                      placeholder="Add a wrong answer here"
+                      placeholder="Enter a WRONG answer here!"
                       value={incorrect2Text}
                       className="form-input w-100"
                       style={{ lineHeight: "1.5", resize: "vertical" }}
@@ -115,7 +133,7 @@ const QuestionForm = () => {
                   <div className="col-12 col-lg-12">
                     <input
                       name="incorrect3"
-                      placeholder="Add a wrong answer here"
+                      placeholder="Enter a WRONG answer here!"
                       value={incorrect3Text}
                       className="form-input w-100"
                       style={{ lineHeight: "1.5", resize: "vertical" }}
@@ -127,9 +145,13 @@ const QuestionForm = () => {
             </div>
 
             <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Create
-              </button>
+              <Button
+              variant="outlined"
+              type="submit"
+              >
+              Create
+              </Button>
+ 
             </div>
           </form>
         </>
