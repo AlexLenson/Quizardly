@@ -148,9 +148,13 @@ const QuestionForm = () => {
             </div>
 
             <div className="col-12 col-lg-3">
-              <Button variant="outlined" type="submit">
-                Create
+              <Button
+              variant="outlined"
+              type="submit"
+              >
+              Create
               </Button>
+ 
             </div>
           </form>
         </>
