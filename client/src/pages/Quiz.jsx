@@ -90,8 +90,8 @@ const Quiz = () => {
           <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
             <ul>
               {multipleChoice(currentQuestion).map((answer, index) => (
-                <li key={index}>{answer}</li>
-              ))}
+                <button key="index" onClick={()=> handleAnswerClick(answer,currentQuestion)}> <li key={index}>{answer}</li></button>
+              ))} 
             </ul>
           </div>
         </div>
