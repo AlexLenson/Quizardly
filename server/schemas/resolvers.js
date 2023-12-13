@@ -10,7 +10,7 @@ const resolvers = {
       return User.findById(userId).populate('quizzes');
     },
     getQuizzes: async () => {
-      return Quiz.find();
+      return Quiz.find().populate('createdBy');
     },
     getQuiz: async (parent, { quizId }) => {
       return Quiz.findById(quizId).populate('questions').populate('createdBy');
@@ -52,13 +52,20 @@ const resolvers = {
 
       return { token, user };
     },
-    createQuiz: async (parent, { title, description, questionIds, category }, context) => {
+    createQuiz: async (parent, { title, description, questions, category }, context) => {
       try {
+        
+        const questionIdArray = [];
+
+        questions.forEach(question => {
+         const newQuestion = Question.create({question})
+         questionIdArray.push(newQuestion._id);
+        });
 
         const quiz = await Quiz.create({
           title,
           description,
-          questions: questionIds,
+          questions: questionIdArray,
           category,
           createdBy: context.user._id
         });
