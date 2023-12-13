@@ -10,7 +10,7 @@ const Profile = () => {
   const { profileId } = useParams();
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { profileId: profileId },
+    variables: { username: profileId },
   });
 
   const user = data?.me || data?.user || {};
