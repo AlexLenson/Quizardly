@@ -13,6 +13,8 @@ const QuestionForm = (addQuestion, category) => {
   const [incorrect2Text, setIncorrect2] = useState("");
   const [incorrect3Text, setIncorrect3] = useState("");
 
+  const [createQuestion, { error, data }] = useMutation(CREATE_QUESTION);
+
 
   const handleFormSubmit = async (event) => {
     try {

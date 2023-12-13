@@ -13,7 +13,7 @@ const resolvers = {
       return Quiz.find();
     },
     getQuiz: async (parent, { quizId }) => {
-      return Quiz.findById(quizId);
+      return Quiz.findById(quizId).populate('questions').populate('createdBy');
     },
     getQuestions: async () => {
       return Question.find();

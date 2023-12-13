@@ -29,6 +29,7 @@ export const QUERY_THOUGHTS = gql`
 export const QUERY_SINGLE_QUIZ = gql`
 query GetQuiz($quizId: ID!) {
   getQuiz(quizId: $quizId) {
+    _id
     title
     description
     questions {

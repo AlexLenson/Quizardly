@@ -7,40 +7,50 @@ import { useState } from "react";
 const Quiz = () => {
   // Use `useParams()` to retrieve value of the route parameter `:quizId`
   const { quizId } = useParams();
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
+  const [showScore, setShowScore] = useState(false);
 
   const { loading, data } = useQuery(QUERY_SINGLE_QUIZ, {
     // pass URL parameter
     variables: { quizId: quizId },
   });
 
-  const quiz = data?.quiz || {};
+  const quiz = data?.getQuiz || {};
+  const questionArray = quiz?.questions || [];
+  
+  if (data && data.getQuiz) {
 
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0);
-  const [showScore, setShowScore] = useState(false);
-
-
+    if (questionArray.length > 0) {
+      console.log(questionArray[currentQuestion].question);
+      console.log(quiz.title)
+      console.log(quiz);
+    } else {
+      console.log("No questions found in the quiz.");
+    }
+  } else if (loading) {
+    console.log("Loading..."); // Indicates that data is being fetched
+  } else {
+    console.log("Error fetching quiz data."); // Handle error fetching data
+  }
 
   // generate an array that randomizes the order of the answers based off the index of the current question
   const multipleChoice = (index) => {
     //take the correct answers and push it into the incorrect answers array to create the choices array
-    const correct_answer = quiz.questions[index].correct_answer;
-    const choices = quiz.questions[index].incorrect_answers.push(correct_answer);
+    const correct_answer = questionArray[index].correct_answer;
+    const choices = questionArray[index].incorrect_answers;
+    const newArray= [...choices,correct_answer]
 
-    //shuffle array function
-    const shuffleArray = async (array) => {
-      const shuffledArray = [...array];
+
+      const shuffledArray = [...newArray];
       for (let i = shuffledArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
       }
+      console.log(shuffledArray);
       return shuffledArray;
     };
 
-    //shuffle choices
-    const shuffledAnswers = shuffleArray(choices);
-    return shuffledAnswers;
-  };
 
   //On choice click, check the selected answer agains the questions correct answer. Then go to the next question.
   const handleAnswerClick = (selectedAnswer, index) => {
@@ -65,15 +75,19 @@ const Quiz = () => {
   }
   return (
     <div className="quiz-container">
-      {showScore ? (
+      {loading ? ( // Check if data is still loading
+      <p>Loading...</p>
+    ) :showScore ? (
         <div className="result-container">
-          <h2>
-            Your Score: {score} 
-          </h2>
+          <h2>Your Score: {score}</h2>
         </div>
       ) : (
         <div className="my-3">
+          {quiz && quiz.title ? ( // Check if quiz and its title exist
           <h3 className="card-header bg-dark text-light p-2 m-0">{quiz.title}</h3>
+        ) : (
+          <p>No quiz title available</p>
+        )}
           <div className="bg-light py-4">
             <blockquote
               className="p-4"
@@ -84,14 +98,16 @@ const Quiz = () => {
                 lineHeight: "1.5",
               }}
             >
-              {quiz.questions.question}
+              {quiz.questions[currentQuestion].question}
             </blockquote>
           </div>
           <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
             <ul>
               {multipleChoice(currentQuestion).map((answer, index) => (
-                <button key={index} onClick={()=> handleAnswerClick(answer, currentQuestion)}><li key={index}>{answer}</li></button>
-              ))} 
+                <button key={index} onClick={() => handleAnswerClick(answer, currentQuestion)}>
+                  <li key={index}>{answer}</li>
+                </button>
+              ))}
             </ul>
           </div>
         </div>
