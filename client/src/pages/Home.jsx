@@ -1,6 +1,9 @@
 import { useQuery } from '@apollo/client';
 import Quizardly from '../assets/quizardly.png'
 
+import QuizCategoryCarousel from '../components/Carousels/QuizCategory'
+import CategoryCarousel from '../components/Carousels/CategoryCarousel'
+
 import General from '../assets/GeneralImage.jpg'
 import History from '../assets/HistoryImage.jpg'
 import Games from '../assets/GamesImage.jpg'
@@ -14,26 +17,41 @@ import Music from '../assets/MusicImage.jpg'
 import Food from '../assets/FoodImage.jpg'
 import Geography from '../assets/GeographyImage.jpg'
 import Sports from '../assets/TVImage.jpg'
+
+
+const CarouselCategoryImages = [General, History, Games, TVMovies, Literature, Tech, Science, Math, PopCulture, Music, Food, Geography, Sports ]
+
 const Home = () => {
+    
+    return (
+    <div className="hero" id="home">
+        <div className="hero-overlay">
+            
+            <img src={Quizardly} alt="Narvin" className="hero-image"/>
+            
+            <div className="carousel-cat">
+            <QuizCategoryCarousel images={CarouselCategoryImages}/>
+            </div>
+            <div className="carousel-quiz">
+            <CategoryCarousel images={CarouselCategoryImages}/>
+            </div>
+           
+                
+                
+                </div>
+                
+            </div>
+            
+               
+               
+    )
+        
+
+      
+   
+}
 
 
-  return (
-    <main>
-      <div className="flex-row justify-center">
-        <div
-          className="col-12 col-md-10 mb-3 p-3"
-          // style={{ border: '1px dotted #1a1a1a' }}
-        >
-         
 
 
-        </div>
-        <div className="col-12 col-md-8 mb-3">
-
-        </div>
-      </div>
-    </main>
-  );
-};
-
-export default Home;
+export default Home
