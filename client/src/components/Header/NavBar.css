@@ -3,7 +3,7 @@
     border: none;
     outline: none;
     color: rgb(255, 255, 255);
-    background: #111;
+    background: transparent;
     cursor: pointer;
     position: relative;
     z-index: 0;
@@ -36,7 +36,7 @@ button:hover{
 	border: 2px solid black;
 }
  
- */
+ 
 
  .q-logo {
     display: flex;

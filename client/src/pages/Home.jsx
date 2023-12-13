@@ -16,7 +16,7 @@ import PopCulture from '../assets/PopCultureImage.jpg'
 import Music from '../assets/MusicImage.jpg'
 import Food from '../assets/FoodImage.jpg'
 import Geography from '../assets/GeographyImage.jpg'
-import Sports from '../assets/TVImage.jpg'
+import Sports from '../assets/SportsImage.jpg'
 import './Home.css'
 
 
