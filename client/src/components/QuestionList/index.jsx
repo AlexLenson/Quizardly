@@ -1,6 +1,6 @@
-const CommentList = ({questions = [] }) => {
+const QuestionList = ({questions = [] }) => {
   if (!questions.length) {
-    return <h3>No Comments Yet</h3>;
+    return <h3>No Questions Created Yet</h3>;
   }
 
   return (
@@ -9,7 +9,7 @@ const CommentList = ({questions = [] }) => {
         className="p-5 display-inline-block"
         style={{ borderBottom: '1px dotted #1a1a1a' }}
       >
-        Comments
+        Questions
       </h3>
       <div className="flex-row my-4">
         {questions &&
@@ -19,7 +19,7 @@ const CommentList = ({questions = [] }) => {
                 <h5 className="card-header">
                   {question.question}
                 </h5>
-                <p className="card-body">{question.correct_answero}</p>
+                <p className="card-body">{question.correct_answer}</p>
               </div>
             </div>
           ))}
@@ -28,4 +28,4 @@ const CommentList = ({questions = [] }) => {
   );
 };
 
-export default CommentList;
+export default QuestionList;
