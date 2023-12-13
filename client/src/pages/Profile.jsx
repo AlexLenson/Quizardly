@@ -49,6 +49,8 @@ const Profile = () => {
     return <div>Loading...</div>;
   }
 
+  console.log("here are the user's quizzes:", user.quizzes.category);
+
   return (
     <div>
       <div className="flex-row justify-center mb-3">
