@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import Button from '@mui/material/Button'
+import Button from "@mui/material/Button";
 import { CREATE_QUESTION } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
-import auth from "../../utils/auth";
 
 const QuestionForm = () => {
   const [questionText, setQuestionText] = useState("");
@@ -22,10 +21,12 @@ const QuestionForm = () => {
     try {
       const { data } = await createQuestion({
         variables: {
-          c,
-          commentText,
-          // Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username
-          commentAuthor: Auth.getProfile().authenticatedPerson.username,
+          category: "test",
+          type: "N/A",
+          difficulty: "N/A",
+          question: questionText,
+          correctAnswer: correctText,
+          incorrectAnswers: [incorrect1Text, incorrect2Text, incorrect3Text],
         },
       });
       setQuestionText("");
@@ -37,6 +38,8 @@ const QuestionForm = () => {
       console.error(err);
     }
   };
+
+  // Update quiz with question
 
   const handleChange = (event) => {
     const { name, value } = event.target;
