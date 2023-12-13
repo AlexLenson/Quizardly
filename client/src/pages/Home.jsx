@@ -20,7 +20,9 @@ import Sports from '../assets/TVImage.jpg'
 import './Home.css'
 
 
-const CarouselCategoryImages = [General, History, Games, TVMovies, Literature, Tech, Science, Math, PopCulture, Music, Food, Geography, Sports ]
+const CarouselCategoryImages = [General, History, Games, TVMovies, Literature, Tech, Science, Math, PopCulture, Music, Food, Geography, Sports ];
+const Categories = ["General", "History"," Games", "TVMovies", "Literature"," Tech", "Science", "Math", "PopCulture", "Music"," Food", "Geography", "Sports" ]
+
 
 const Home = () => {
     
@@ -35,7 +37,7 @@ const Home = () => {
             </div>
             <h1 className="homeh1">User Quizzes</h1>
             <div className="carousel-quiz">
-            <CategoryCarousel images={CarouselCategoryImages}/>
+            <CategoryCarousel images={CarouselCategoryImages} categories={Categories}/>
             </div>
            
                 
