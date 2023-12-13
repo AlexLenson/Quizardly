@@ -28,9 +28,8 @@ mutation addUser($username: String!, $password: String!) {
 
 export const CREATE_QUIZ = gql`
 mutation createQuiz($title: String!, $category: String!, $questions: [String!], $description: String) {
-  createQuiz(title: $title, category: $category, questions: $questions, description: $description) {
+  createQuiz(title: $title, category: $category, questions: [$questions], description: $description) {
     username
-    
     quizzes {
       title
       description

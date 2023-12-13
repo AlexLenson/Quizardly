@@ -65,7 +65,7 @@ const resolvers = {
         const quiz = await Quiz.create({
           title,
           description,
-          questions: questionIdArray,
+          questionIds: questionIdArray,
           category,
           createdBy: context.user._id
         });
