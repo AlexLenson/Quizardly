@@ -32,9 +32,14 @@ const router = createBrowserRouter([
         path: '/profiles/:profileId',
         element: <Profile />
       }, {
-        path: '/Create',
+        path: '/create',
         element: <CreateQuiz />
+      },
+      {
+        path: '/quiz/:quizId',
+        element: <Quiz />
       }
+      
     ]
   }
 ])
