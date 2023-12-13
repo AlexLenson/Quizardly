@@ -1,4 +1,4 @@
-+const { User, Quiz, Question } = require('../models');
+const { User, Quiz, Question } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -13,7 +13,7 @@ const resolvers = {
       return Quiz.find();
     },
     getQuiz: async (parent, { quizId }) => {
-      return Quiz.findById(quizId);
+      return Quiz.findById(quizId).populate('questions').populate('createdBy');
     },
     getQuestions: async () => {
       return Question.find();
