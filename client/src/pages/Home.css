@@ -26,6 +26,11 @@
     margin-bottom: 15px;
   }
 
+  .score {
+    width:10vw;
+    margin-left: 30%;
+  }
+
 
 @keyframes floating {
     0% {
