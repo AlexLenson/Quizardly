@@ -14,6 +14,11 @@ import { useState } from "react";
 const CreateQuiz = () => {
   const [quizTitle, setQuizTitle] = useState("");
   const [category, setCategory] = useState("");
+  const [questionsArray, setQuestionsArray] = useState([]);
+
+const addQuestion = (question)=>{
+    setQuestionsArray([...questionsArray,question]);
+}
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -40,12 +45,14 @@ const CreateQuiz = () => {
           value={quizTitle}
           className=" w-100"
           style={{ lineHeight: "1.5", resize: "vertical" }}
+          onChange={handleChange}
         ></input>
 
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
             <InputLabel id="dropDown-label">Category</InputLabel>
             <Select
+            name="category"
               labelId="dropDown-label"
               id="dropDown"
               value={category}
@@ -69,7 +76,7 @@ const CreateQuiz = () => {
           </FormControl>
         </Box>
       </div>
-      <QuestionForm />
+      <QuestionForm addQuestion = {addQuestion} category={category} />
     </div>
   );
 };

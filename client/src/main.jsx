@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import CreateQuiz from './pages/CreateQuiz';
 import Profile from './pages/Profile';
 import Error from './pages/Error';
+import Quiz from './pages/Quiz';
 
 const router = createBrowserRouter([
   {
