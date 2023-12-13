@@ -12,6 +12,7 @@ import QuestionList from "../components/QuestionList";
 
 import { useState } from "react";
 import { CREATE_QUIZ } from "../utils/mutations";
+import Button from "@mui/material/Button";
 
 const CreateQuiz = () => {
   const [quizTitle, setQuizTitle] = useState("");
@@ -50,8 +51,11 @@ const CreateQuiz = () => {
         description: quizDesc,
       },
     });
+    
+    console.log(data);
   };
 
+  console.log(questionsArray);
   return (
     <div>
       <h2>Create a Quiz</h2>
@@ -109,7 +113,7 @@ const CreateQuiz = () => {
         <QuestionList questions={questionsArray} />
       </div>
       <div>
-        <button onClick={handleQuizButton}>Create quiz</button>
+        <Button onClick={handleQuizButton}>Create quiz</Button>
       </div>
     </div>
   );

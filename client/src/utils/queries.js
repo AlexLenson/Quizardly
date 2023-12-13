@@ -43,17 +43,15 @@ query GetQuiz($quizId: ID!) {
 `;
 
 export const QUERY_ME = gql`
-  query me {
-    me {
+query Me {
+  me {
+    username
+    score
+    quizzes {
       _id
-      username
-      email
-      thoughts {
-        _id
-        thoughtText
-        thoughtAuthor
-        createdAt
-      }
+      title
+      description
     }
   }
+}
 `;
