@@ -8,19 +8,24 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 import QuestionForm from "../components/QuestionForm";
+import QuestionList from "../components/QuestionList";
 
 import { useState } from "react";
+import { CREATE_QUIZ } from "../utils/mutations";
 
 const CreateQuiz = () => {
   const [quizTitle, setQuizTitle] = useState("");
+  const [quizDesc, setQuizDesc] = useState("");
   const [category, setCategory] = useState("");
   const [questionsArray, setQuestionsArray] = useState([]);
+  const [CreateQuiz, { error, data }] = useMutation(CREATE_QUIZ);
 
-const addQuestion = (question)=>{
-    setQuestionsArray([...questionsArray,question]);
-}
+  const addQuestion = (question) => {
+    setQuestionsArray([...questionsArray, question]);
+  };
 
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
+    event.preventDefault();
     const { name, value } = event.target;
 
     switch (name) {
@@ -31,8 +36,20 @@ const addQuestion = (question)=>{
         setCategory(value);
         break;
       default:
+        setQuizDesc(value);
         break;
     }
+  };
+
+  const handleQuizButton = async () => {
+    const { data } = await CreateQuiz({
+      variables: {
+        title: quizTitle,
+        category: category,
+        questions: [questionsArray],
+        description: quizDesc,
+      },
+    });
   };
 
   return (
@@ -48,11 +65,20 @@ const addQuestion = (question)=>{
           onChange={handleChange}
         ></input>
 
+        <input
+          name="quizDesc"
+          placeholder="Quiz Description"
+          value={quizDesc}
+          className=" w-100"
+          style={{ lineHeight: "1.5", resize: "vertical" }}
+          onChange={handleChange}
+        ></input>
+
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
             <InputLabel id="dropDown-label">Category</InputLabel>
             <Select
-            name="category"
+              name="category"
               labelId="dropDown-label"
               id="dropDown"
               value={category}
@@ -76,7 +102,15 @@ const addQuestion = (question)=>{
           </FormControl>
         </Box>
       </div>
-      <QuestionForm addQuestion = {addQuestion} category={category} />
+      <div>
+        <QuestionForm addQuestion={addQuestion} quizCategory={category} />
+      </div>
+      <div>
+        <QuestionList questions={questionsArray} />
+      </div>
+      <div>
+        <button onClick={handleQuizButton}>Create quiz</button>
+      </div>
     </div>
   );
 };

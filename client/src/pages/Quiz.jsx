@@ -80,6 +80,7 @@ const Quiz = () => {
     ) :showScore ? (
         <div className="result-container">
           <h2>Your Score: {score}</h2>
+          
         </div>
       ) : (
         <div className="my-3">
