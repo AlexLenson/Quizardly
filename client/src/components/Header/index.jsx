@@ -11,22 +11,24 @@ const Header = () => {
     <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
-          <Link className="text-light" to="/">
-            <h1 className="m-0">Quizzardly</h1>
-          </Link>
-          <p className="m-0"></p>
+          
+      <a href="/"> <img src={Quizardly} className="q-logo" height="85px" /> </a>
+  
         </div>
         <div>
           {Auth.loggedIn() ? (
-            <>
+            <div class="navEl">
+              <Link to="/create"><button className="btn btn-lg btn-info m-2">
+              Create Question</button>
               <Link className="btn btn-lg btn-info m-2" to="/me">
                 {/* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username  */}
                 {Auth.getProfile().authenticatedPerson.username}'s profile
               </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <button className="btn btn-lg btn-info m-2" onClick={logout}>
                 Logout
-              </button>
-            </>
+              </button>                         
+              </Link>
+            </div>
           ) : (
             <>
               <Link className="btn btn-lg btn-info m-2" to="/login">
