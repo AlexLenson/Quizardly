@@ -7,13 +7,14 @@ header {
 .navEl {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     color: white;
     position: fixed;
     top: 0;
    
     width: 100%;
 
+    padding: 0 0 0 60%;
 }
 .buttonstyle {
     font-family: 'Space Mono', monospace ;

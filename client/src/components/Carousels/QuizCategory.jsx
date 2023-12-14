@@ -9,7 +9,7 @@ import './Carousels.css'
 
 
 
-const QuizCategory = ({ images =[],categories }) => {
+const QuizCategory = ({ images =[],categories, quizIds}) => {
   return (
     <Carousel
       showArrows={true}
@@ -21,7 +21,7 @@ const QuizCategory = ({ images =[],categories }) => {
     >
       {images.map((image, index) => (
         <div key={index} className="carousel-image-container">
-         <img src={image} alt={`slide ${index}`} className="carousel-image" />
+        <a href={`/quiz/${quizIds[index]}`}> <img src={image} alt={`slide ${index}`} className="carousel-image" /></a>
          <div className="carousel-text"> <p>{categories[index]}</p> </div>
         </div>
       ))}
