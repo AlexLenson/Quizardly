@@ -23,7 +23,7 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findById( context.user._id);
+        return User.findById( context.user._id).populate('quizzes');
       }
       throw AuthenticationError;
     },

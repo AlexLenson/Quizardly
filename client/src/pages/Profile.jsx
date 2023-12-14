@@ -26,7 +26,7 @@ import './Home.css'
 
 
 const CarouselCategoryImages = [General, History, Games, TVMovies, Literature, Tech, Science, Math, PopCulture, Music, Food, Geography, Sports];
-const Categories = ["General", "History", " Games", "TVMovies", "Literature", " Tech", "Science", "Math", "PopCulture", "Music", " Food", "Geography", "Sports"]
+const Categories = ["General", "History", " Games", "TVMovies", "Literature", " Tech", "Science", "Math", "PopCulture", "Music", " Food", "Geography", "Sports"];
 
 const imageImports = {
   General,
@@ -42,7 +42,7 @@ const imageImports = {
   Food,
   Geography,
   Sports
-}
+};
 
 const Profile = () => {
   const { profileId } = useParams();
@@ -62,11 +62,12 @@ const Profile = () => {
   console.log("here are the user's quizzes:", quizArray);
 
   // Extracting categories from quizArray
-
-
   
-  const quizCategories = quizArray.map((quiz) =>{ 
-    quiz.category});
+  const quizIds = quizArray.map((quiz) =>
+  quiz._id);
+
+  const quizCategories = quizArray.map((quiz) =>
+    quiz.category);
   console.log("Categories of user's quizzes:", quizCategories);
 
   const importedImageArray = quizCategories.map(category => imageImports[category]);
@@ -90,7 +91,7 @@ const Profile = () => {
         <div className="col-12 col-md-10 mb-5">
         <h1 className="homeh1">User Quizzes</h1>
         </div>
-        <CategoryCarousel images={importedImageArray} categories={quizCategories} />
+        <CategoryCarousel images={importedImageArray} categories={quizCategories} quizIds={quizIds} />
       </div>
     </div></>
     );
@@ -109,7 +110,7 @@ const Profile = () => {
         {/* Quizzes carosel */}
         <h1 className="homeh1">User Quizzes</h1>
         <div className="carousel-quiz">
-          <CategoryCarousel images={importedImageArray} categories={quizCategories} />
+          <CategoryCarousel images={importedImageArray} categories={quizCategories} quizIds={quizIds} />
         </div>
       </div>
     </div>

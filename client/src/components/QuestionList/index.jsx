@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import EditQuestionForm from '../EditQuestionForm/index';
+import { useQuery } from "@apollo/client";
 
-const QuestionList = ({ questions = [], questionIds = [] }) => {
+const QuestionList = ({ questions = [], questionIds = [] ,setQuestionsArray}) => {
   const [editingQuestion, setEditingQuestion] = useState(false);
+  const [newObject, setNewObject] = useState({});
 
-  const handleEditClick = (index) => {
+
+  const handleEditClick = () => {
     setEditingQuestion(true);
   };
 
@@ -12,15 +15,23 @@ const QuestionList = ({ questions = [], questionIds = [] }) => {
     return <h3>No Questions Created Yet</h3>;
   }
 
-  
-  {
-    questionIds.map((questionId) => {
-      const { loading, data } = useQuery(QUERY_SINGLE_QUIZ, {
-        variables: { quizId: questionID }
-      })
-    })
-  }
-  
+  let newQuestions = [...questions] 
+
+
+console.log("original",newQuestions);
+
+const replaceAtIndex = (index) =>{
+console.log("before replace",newQuestions[index]);
+
+newQuestions[index]= newObject;
+
+
+console.log("replaced index",newQuestions[index]);
+setQuestionsArray(newQuestions)
+}
+
+  console.log(newQuestions);
+
   return (
     <>
       <h3 className="p-5 display-inline-block" style={{ borderBottom: '1px dotted #1a1a1a' }}>
@@ -28,21 +39,18 @@ const QuestionList = ({ questions = [], questionIds = [] }) => {
       </h3>
       <div className="flex-row my-4">
 
-        
+
 
         {questions.map((question, index) => (
           <div key={index} className="col-12 mb-3 pb-3">
             <div className="p-3 bg-dark text-light">
               {editingQuestion === true ? (
                 <EditQuestionForm
-                  questions
+                replaceAtIndex={replaceAtIndex}
                   questionId={questionIds[index]}
-                  onCancelEdit={() => setEditingQuestion(null)}
-                  onSaveEdit={(updatedQuestion) => {
-                    // Handle saving the updated question to your state or data store
-                    // Reset editing state
-                    setEditingQuestion(null);
-                  }}
+                  setNewObject={setNewObject}
+                  index={index}
+                  setEditingQuestion={setEditingQuestion}
                 />
               ) : (
                 <>

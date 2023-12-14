@@ -143,7 +143,7 @@ const CreateQuiz = () => {
       {quizTitle && quizDesc ? (<QuestionForm addQuestion={addQuestion} quizCategory={category}  IdArray={IdArray}/>):( <></>)}
       </div>
       <div>
-        <QuestionList questionIds={questionIds} questions={questionsArray} />
+        <QuestionList questionIds={questionIds} questions={questionsArray} setQuestionsArray={setQuestionsArray} />
       </div>
       <div>
     {quizTitle && quizDesc ? (<Button variant="outlined" onClick={handleQuizButton}>Create quiz</Button>):(<Button variant="contained" disabled onClick={handleQuizButton}>Create quiz</Button> )}

@@ -6,7 +6,7 @@ import { CREATE_QUESTION, UPDATE_QUESTION } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
-const EditQuestionForm = ({ questionId }) => {
+const EditQuestionForm = ({replaceAtIndex ,questionId, setNewObject,index,setEditingQuestion }) => {
     const [questionText, setQuestionText] = useState("");
     const [correctText, setCorrect] = useState("");
     const [incorrect1Text, setIncorrect1] = useState("");
@@ -20,9 +20,10 @@ const EditQuestionForm = ({ questionId }) => {
             question: questionText,
             correct_answer: correctText,
             incorrect_answers: [incorrect1Text, incorrect2Text, incorrect3Text],
-            category: quizCategory,
         };
 
+        setNewObject(formData);
+        replaceAtIndex(index);
 
         event.preventDefault();
 
@@ -36,7 +37,9 @@ const EditQuestionForm = ({ questionId }) => {
                 },
             });
 
-            console.log(data.createQuestion._id);
+
+            setEditingQuestion(false)
+            console.log(data.updateQuestion._id);
             setQuestionText("");
             setCorrect("");
             setIncorrect1("");
