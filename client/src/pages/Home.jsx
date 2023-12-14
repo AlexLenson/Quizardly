@@ -24,7 +24,22 @@ import './Home.css'
 const CarouselCategoryImages = [General, History, Games, TVMovies, Literature, Tech, Science, Math, PopCulture, Music, Food, Geography, Sports ];
 const Categories = ["General", "History"," Games", "TVMovies", "Literature"," Tech", "Science", "Math", "PopCulture", "Music"," Food", "Geography", "Sports" ]
 
-
+const imageImports = {
+    General,
+    History,
+    Games,
+    TVMovies,
+    Literature,
+    Tech,
+    Science,
+    Math,
+    PopCulture,
+    Music,
+    Food,
+    Geography,
+    Sports
+  };
+  
 const Home = () => {
     const { loading, data } = useQuery(QUERY_QUIZZES);
     
@@ -48,7 +63,8 @@ const Home = () => {
         console.log("Categories of  quizzes:", quizCategories);
         console.log("Id of  quizzes:", quizIds);
 
-    
+        const importedImageArray = quizCategories.map(category => `../${imageImports[category]}`);
+
     return (
     <div className="hero" id="home">
         <div className="hero-overlay">
@@ -57,11 +73,11 @@ const Home = () => {
             <img src={Quizardly} alt="Narvin" className="hero-image"/>
             <h1 className="homeh1">User Quizzes</h1>
             <div className="carousel-cat">
-            <QuizCategoryCarousel images={CarouselCategoryImages} categories={Categories}/>
+            <CategoryCarousel images={importedImageArray} categories={quizCategories} quizIds={quizIds} />
             </div>
             <h1 className="homeh1">Quizzes by Category</h1>
             <div className="carousel-quiz">
-            <CategoryCarousel images={CarouselCategoryImages} categories={Categories}/>
+
             </div>
            
                 

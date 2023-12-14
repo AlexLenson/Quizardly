@@ -70,7 +70,7 @@ const Profile = () => {
     quiz.category);
   console.log("Categories of user's quizzes:", quizCategories);
 
-  const importedImageArray = quizCategories.map(category => `${imageImports[category]}`);
+  const importedImageArray = quizCategories.map(category => `../../${imageImports[category]}`);
   console.log("importedImageArray", importedImageArray);
   if (loading) {
     return <div>Loading...</div>;
@@ -91,7 +91,7 @@ const Profile = () => {
         <div className="col-12 col-md-10 mb-5">
         <h1 className="homeh1">User Quizzes</h1>
         </div>
-        <CategoryCarousel images={importedImageArray} categories={quizCategories} quizIds={quizIds} />
+        <CategoryCarousel images={importedImageArray} categories={quizCategories} quizIds={quizIds} quizArray={quizArray} />
       </div>
     </div></>
     );
