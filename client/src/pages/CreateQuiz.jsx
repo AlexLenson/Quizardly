@@ -9,6 +9,8 @@ import Select from "@mui/material/Select";
 import { Link } from 'react-router-dom';
 import QuestionForm from "../components/QuestionForm";
 import QuestionList from "../components/QuestionList";
+import Paper from '@mui/material/Paper';
+
 
 import { useState } from "react";
 import { CREATE_QUIZ } from "../utils/mutations";
@@ -79,6 +81,8 @@ const CreateQuiz = () => {
  
   return (
    <>
+       <Paper elevation={4} />
+      
    <div>  
      {quizMade ? ( <div> <h2>QUIZ CREATED</h2> 
      <br />
@@ -145,7 +149,7 @@ const CreateQuiz = () => {
     {quizTitle && quizDesc ? (<Button variant="outlined" onClick={handleQuizButton}>Create quiz</Button>):(<Button variant="contained" disabled onClick={handleQuizButton}>Create quiz</Button> )}
       </div>
       </div>)}
-    </div> </>
+    </div> <Paper /></>
   );
 };
 

@@ -11,7 +11,7 @@ const Header = () => {
   };
   return (
     <header>
-      <div>
+
         <div>
           
         <a id="navLogo" href="/"><img src={Quizardly} className="q-logo" height="85px" /></a>
@@ -45,7 +45,6 @@ const Header = () => {
             </>
           )}
         </div>
-      </div>
     </header>
   );
 };

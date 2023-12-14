@@ -7,14 +7,22 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+import { QUERY_SINGLE_QUIZ } from "../utils/queries";
+
 const QuestionList = ({ questions = [] }) => {
   if (!questions.length) {
     return <h3>No Questions Created Yet</h3>;
   }
-  
+ 
+ questionIds.map((questionId) => {const { loading, data } = useQuery(QUERY_SINGLE_QUIZ, {
+    variables: { quizId: questionID }}
+    
+    )})
+ 
+ 
   return (
 
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper}  sx={{ minWidth: 650, margin:2}}>
       <Table sx={{ minWidth: 650, marginTop:2}} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -43,7 +51,7 @@ const QuestionList = ({ questions = [] }) => {
         </TableBody>
       </Table>
     </TableContainer>
-    
+    {editState ? (<input></input>) : ()}
   );
 };
 
