@@ -16,7 +16,7 @@
     <a href="https://github.com/AlexLenson/Quizardly/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="">View Deployment</a>
+    <a href="https://quizardly.onrender.com/">View Deployment</a>
     ·
     <a href="https://github.com/AlexLenson/Quizardly/issues">Report Bug</a>
     ·
@@ -62,7 +62,7 @@
 ## Getting Started
 
 ### Prerequisites
-All there is to do for this assignment is to open the deployed link 
+All there is to do for this assignment is to open the deployed link, create an account to sign-in and start making the quiz!
 
 ## Usage
 Signing Up for the website
