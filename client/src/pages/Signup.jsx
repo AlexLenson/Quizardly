@@ -10,7 +10,9 @@ const Signup = () => {
   const [formState, setFormState] = useState({
     username: '',
     password: '',
+    password2: '',
   });
+  const [errorMessage,setErrorMessage]=useState('');
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
@@ -25,7 +27,9 @@ const Signup = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
-
+    if(password!=password2){
+      return;
+    }
     try {
       const { data } = await addUser({
         variables: { ...formState },
@@ -38,7 +42,7 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
+    <main className="flex-row justify-center mt-5 mb-4">
       <div className="col-12 col-lg-10">
         <div className="card">
           <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
@@ -64,6 +68,14 @@ const Signup = () => {
                   name="password"
                   type="password"
                   value={formState.password}
+                  onChange={handleChange}
+                />
+                <input
+                  className="form-input"
+                  placeholder="******"
+                  name="password2"
+                  type="password"
+                  value={formState.password2}
                   onChange={handleChange}
                 />
                 <button
