@@ -139,7 +139,7 @@ const CreateQuiz = () => {
         <QuestionForm addQuestion={addQuestion} quizCategory={category}  IdArray={IdArray}/>
       </div>
       <div>
-        <QuestionList questions={questionsArray} />
+        <QuestionList questionIds={questionIds} questions={questionsArray} />
       </div>
       <div>
         <Button onClick={handleQuizButton}>Create quiz</Button>
