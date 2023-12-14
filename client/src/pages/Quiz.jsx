@@ -9,7 +9,7 @@ const Quiz = () => {
   const { quizId } = useParams();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [showScore, setShowScore] = useState(true);
+  const [showScore, setShowScore] = useState(false);
 
   const { loading, data } = useQuery(QUERY_SINGLE_QUIZ, {
     // pass URL parameter
@@ -18,7 +18,9 @@ const Quiz = () => {
 
   const quiz = data?.getQuiz || {};
   const questionArray = quiz?.questions || [];
-  
+   console.log(quiz);
+
+
   if (data && data.getQuiz) {
 
     if (questionArray.length > 0) {
