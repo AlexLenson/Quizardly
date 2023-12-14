@@ -6,14 +6,14 @@ import { CREATE_QUESTION } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
-const QuestionForm = ({addQuestion, quizCategory}) => {
+const QuestionForm = ({addQuestion, IdArray, quizCategory}) => {
   const [questionText, setQuestionText] = useState("");
   const [correctText, setCorrect] = useState("");
   const [incorrect1Text, setIncorrect1] = useState("");
   const [incorrect2Text, setIncorrect2] = useState("");
   const [incorrect3Text, setIncorrect3] = useState("");
 
-
+const[createQuestion, {error}]= useMutation(CREATE_QUESTION);
 
   const handleFormSubmit = async (event) => {
     const formData = {
@@ -23,12 +23,22 @@ const QuestionForm = ({addQuestion, quizCategory}) => {
       category: quizCategory,
     };
 
+    
+
     try {
       event.preventDefault();
-
+      const { data } = await createQuestion({
+        variables: {
+          category: quizCategory,
+          question: questionText,
+          correctAnswer: correctText,
+          incorrectAnswers: [incorrect1Text, incorrect2Text, incorrect3Text],
+        },
+      });
   
+      console.log(data.createQuestion._id);
       addQuestion(formData);
-
+      IdArray(data.createQuestion._id);
       setQuestionText("");
       setCorrect("");
       setIncorrect1("");
