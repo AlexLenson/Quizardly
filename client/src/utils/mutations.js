@@ -58,3 +58,15 @@ mutation CreateQuestion($category: String!, $type: String, $difficulty: String, 
   }
 }
 `;
+
+export const UPDATE_QUESTION = gql`
+mutation UpdateQuestion($questionId: ID!, $category: String, $question: String, $correctAnswer: String, $incorrectAnswers: [String!]) {
+  updateQuestion(questionId: $questionId, category: $category, question: $question, correct_answer: $correctAnswer, incorrect_answers: $incorrectAnswers) {
+    _id
+    category
+    question
+    correct_answer
+    incorrect_answers
+  }
+}
+`;
