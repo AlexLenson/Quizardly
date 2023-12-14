@@ -65,7 +65,7 @@ const Quiz = () => {
 
   const NextQuestion = () => {
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
+    if (nextQuestion < quiz.questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
