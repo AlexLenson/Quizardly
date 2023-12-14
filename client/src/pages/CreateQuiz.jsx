@@ -18,7 +18,7 @@ import Button from "@mui/material/Button";
 const CreateQuiz = () => {
   const [quizTitle, setQuizTitle] = useState("");
   const [quizDesc, setQuizDesc] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("General");
   const [questionsArray, setQuestionsArray] = useState([]);
   const [questionIds, setQuestionIds] = useState([]);
   const [CreateQuiz, { error, data }] = useMutation(CREATE_QUIZ);
@@ -88,26 +88,26 @@ const CreateQuiz = () => {
      </div>) : (
       <div>
       <h2>Create a Quiz</h2>
-      <div className="col-9 col-lg-9 ">
+      <div className="col-12 col-lg-12 ">
         <input
           name="quizTitle"
           placeholder="Quiz Title"
           value={quizTitle}
           className=" w-100"
-          style={{ lineHeight: "1.5", resize: "vertical" }}
+          style={{ lineHeight: "1.5", resize: "vertical", margin:10, }}
           onChange={handleChange}
         ></input>
 
-        <input
+        <textarea
           name="quizDesc"
           placeholder="Quiz Description"
           value={quizDesc}
           className=" w-100"
-          style={{ lineHeight: "1.5", resize: "vertical" }}
+          style={{ lineHeight: "1.5", resize: "vertical", margin:10, }}
           onChange={handleChange}
-        ></input>
+        ></textarea>
 
-        <Box sx={{ minWidth: 120 }}>
+        <Box className="col-12 col-lg-4" sx={{ minWidth: 120,  padding:1,}}>
           <FormControl fullWidth>
             <InputLabel id="dropDown-label">Category</InputLabel>
             <Select
@@ -118,7 +118,7 @@ const CreateQuiz = () => {
               label="Category"
               onChange={handleChange}
             >
-              <MenuItem value="General Knowledge">General Knowledge</MenuItem>
+              <MenuItem value="General">General Knowledge</MenuItem>
               <MenuItem value="History">History</MenuItem>
               <MenuItem value="Games">Games</MenuItem>
               <MenuItem value="TV/Movies">TV/Movies</MenuItem>
@@ -136,13 +136,13 @@ const CreateQuiz = () => {
         </Box>
       </div>
       <div>
-        <QuestionForm addQuestion={addQuestion} quizCategory={category}  IdArray={IdArray}/>
+      {quizTitle && quizDesc ? (<QuestionForm addQuestion={addQuestion} quizCategory={category}  IdArray={IdArray}/>):( <></>)}
       </div>
       <div>
         <QuestionList questions={questionsArray} />
       </div>
       <div>
-        <Button onClick={handleQuizButton}>Create quiz</Button>
+    {quizTitle && quizDesc ? (<Button variant="outlined" onClick={handleQuizButton}>Create quiz</Button>):(<Button variant="contained" disabled onClick={handleQuizButton}>Create quiz</Button> )}
       </div>
       </div>)}
     </div> </>

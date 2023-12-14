@@ -15,6 +15,7 @@ const Quiz = () => {
     // pass URL parameter
     variables: { quizId: quizId },
   });
+  
 
   const quiz = data?.getQuiz || {};
   const questionArray = quiz?.questions || [];
@@ -71,10 +72,11 @@ const Quiz = () => {
       setShowScore(true);
     }
   };
-
+  
   if (loading) {
     return <div>Loading...</div>;
   }
+
   return (
     <div className="quiz-container">
       {loading ? ( // Check if data is still loading
@@ -82,7 +84,7 @@ const Quiz = () => {
     ) :showScore ? (
         <div className="result-container">
           <h2>Your Score: {score}</h2>
-            <h3>This quiz was made by: <a href={`../profiles/${quiz.createdBy._id}`}>{quiz.createdBy.username}</a></h3>
+            <h3>This quiz was made by: <a href={`../profile/${quiz.createdBy._id}`}>{quiz.createdBy.username}</a></h3>
         </div>
       ) : (
         <div className="my-3">

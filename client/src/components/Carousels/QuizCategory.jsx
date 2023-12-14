@@ -8,6 +8,7 @@ import './Carousels.css'
 
 
 
+
 const QuizCategory = ({ images =[],categories }) => {
   return (
     <Carousel
