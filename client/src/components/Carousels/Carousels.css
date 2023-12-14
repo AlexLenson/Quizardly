@@ -2,18 +2,20 @@
   position: relative;
 }
 
-.carousel-image-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.carousel-image-container { 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 5px 0px 0px; 
+   flex-direction: column;
+  align-items: center;
     height: 100%; /* Set the height of the container */
     width: 100%;
   }
   
   /* Style for each carousel image */
   .carousel-image {
-    max-width: 325px; /* Ensure the image doesn't exceed the container width */
+    max-width: 350px; /* Ensure the image doesn't exceed the container width */
     max-height: 325px; /* Ensure the image doesn't exceed the container height */
   }
 
