@@ -20,7 +20,7 @@ const CategoryCarousel = ({ images =[],categories ,quizIds, quizArray}) => {
     >
       {images.map((image, index) => (
         <div key={index} className="carousel-image-container">
-        <a href={`/quiz/${quizIds[index]}`}> <img src={`@${image}`} alt={`slide ${index}`} className="carousel-image" /> </a>
+        <a href={`/quiz/${quizIds[index]}`}> <img src={image} alt={`slide ${index}`} className="carousel-image" /> </a>
         <div className="carousel-text"> <p>{`${quizArray[index].title}`}</p> </div>
         </div>
       ))}

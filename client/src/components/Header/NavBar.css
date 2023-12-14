@@ -15,7 +15,7 @@ nav{
 }
 .navEl {
     position: absolute;
-    left: 25%;
+    left: 2%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
