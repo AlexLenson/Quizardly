@@ -16,7 +16,7 @@ import PopCulture from '../assets/PopCultureImage.jpg'
 import Music from '../assets/MusicImage.jpg'
 import Food from '../assets/FoodImage.jpg'
 import Geography from '../assets/GeographyImage.jpg'
-import Sports from '../assets/TVImage.jpg'
+import Sports from '../assets/SportsImage.jpg'
 import './Home.css'
 
 
@@ -30,10 +30,11 @@ const Home = () => {
     <div className="hero" id="home">
         <div className="hero-overlay">
             
+            <h1 className="homeh1">Quizardly </h1>
             <img src={Quizardly} alt="Narvin" className="hero-image"/>
             <h1 className="homeh1">User Quizzes</h1>
             <div className="carousel-cat">
-            <QuizCategoryCarousel images={CarouselCategoryImages}/>
+            <QuizCategoryCarousel images={CarouselCategoryImages} categories={Categories}/>
             </div>
             <h1 className="homeh1">Quizzes by Category</h1>
             <div className="carousel-quiz">
