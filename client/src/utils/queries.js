@@ -66,3 +66,30 @@ query Me {
     }
   }
 `;
+
+export const QUERY_USERS = gql`
+query GetUsers {
+  getUsers {
+    _id
+    username
+    quizzes {
+      _id
+      title
+      category
+    }
+  }
+}`;
+
+
+export const QUERY_QUIZZES = gql`
+query GetQuizzes {
+  getQuizzes {
+    title
+    _id
+    category
+    createdBy {
+      _id
+      username
+    }
+  }
+}`;

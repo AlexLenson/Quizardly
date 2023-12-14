@@ -70,7 +70,7 @@ const Profile = () => {
     quiz.category);
   console.log("Categories of user's quizzes:", quizCategories);
 
-  const importedImageArray = quizCategories.map(category => imageImports[category]);
+  const importedImageArray = quizCategories.map(category => `${imageImports[category]}`);
   console.log("importedImageArray", importedImageArray);
   if (loading) {
     return <div>Loading...</div>;

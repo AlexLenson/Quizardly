@@ -1,5 +1,6 @@
-import { useQuery } from '@apollo/client';
+import { useLazyQuery, useQuery } from '@apollo/client';
 import Quizardly from '../assets/quizardly.png'
+import { QUERY_QUIZZES, QUERY_USERS } from '../utils/queries';
 
 import QuizCategoryCarousel from '../components/Carousels/QuizCategory'
 import CategoryCarousel from '../components/Carousels/CategoryCarousel'
@@ -25,6 +26,28 @@ const Categories = ["General", "History"," Games", "TVMovies", "Literature"," Te
 
 
 const Home = () => {
+    const { loading, data } = useQuery(QUERY_QUIZZES);
+    
+
+    if (loading) {
+        return <div>Loading...</div>;
+      }
+    
+      const quizzes = data?.getQuizzes || {};
+      console.log("quizzes", quizzes);
+
+      function get_random (list) {
+        return list[Math.floor((Math.random()*list.length))];
+      }
+
+      const quizIds = quizzes.map((quiz) =>
+      quiz._id);
+    
+      const quizCategories = quizzes.map((quiz) =>
+        quiz.category);
+        console.log("Categories of  quizzes:", quizCategories);
+        console.log("Id of  quizzes:", quizIds);
+
     
     return (
     <div className="hero" id="home">
