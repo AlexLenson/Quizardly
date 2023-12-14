@@ -2,6 +2,10 @@
     height: 150vh;
  
 }
+#nav-logo{
+    z-index: 2 !important;
+    height: 100%;
+}
 
 .homeh1 {text-align: center;
     font-family: 'Indie Flower', cursive;

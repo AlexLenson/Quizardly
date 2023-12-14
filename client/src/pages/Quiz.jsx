@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_SINGLE_QUIZ } from "../utils/queries";
 import { useState } from "react";
+import { Margin } from "@mui/icons-material";
+import Button from "@mui/material/Button";
+
 
 const Quiz = () => {
   // Use `useParams()` to retrieve value of the route parameter `:quizId`
@@ -15,6 +18,7 @@ const Quiz = () => {
     // pass URL parameter
     variables: { quizId: quizId },
   });
+  
 
   const quiz = data?.getQuiz || {};
   const questionArray = quiz?.questions || [];
@@ -75,6 +79,7 @@ const Quiz = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
   return (
     <div className="quiz-container">
       {loading ? ( // Check if data is still loading
@@ -82,12 +87,12 @@ const Quiz = () => {
     ) :showScore ? (
         <div className="result-container">
           <h2>Your Score: {score}</h2>
-            <h3>This quiz was made by: <a href={`../profiles/${quiz.createdBy._id}`}>{quiz.createdBy.username}</a></h3>
+            <h3>This quiz was made by: <a href={`../profile/${quiz.createdBy._id}`}>{quiz.createdBy.username}</a></h3>
         </div>
       ) : (
         <div className="my-3">
           {quiz && quiz.title ? ( // Check if quiz and its title exist
-          <h3 className="card-header bg-dark text-light p-2 m-0">{quiz.title}</h3>
+          <h3 className="card-header bg-dark text-light p-2 m-0 ">{quiz.title}</h3>
         ) : (
           <p>No quiz title available</p>
         )}
@@ -98,7 +103,7 @@ const Quiz = () => {
                 fontSize: "1.5rem",
                 fontStyle: "italic",
                 border: "2px dotted #1a1a1a",
-                lineHeight: "1.5",
+                lineHeight: 1.5,
               }}
             >
               {quiz.questions[currentQuestion].question}
@@ -107,9 +112,21 @@ const Quiz = () => {
           <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
             <ul>
               {multipleChoice(currentQuestion).map((answer, index) => (
-                <button key={index} onClick={() => handleAnswerClick(answer, currentQuestion)}>
-                  <li key={index}>{answer}</li>
-                </button>
+                <li key={index} style={{
+                  'margin':15,
+                  'list-style': 'none'}}>
+                  <button key={index} style={{
+                    'border-radius': 8,
+                    'justify': 'center',
+                    'width': 150,
+                    'height': 60,
+                    'border': '2px solid blue',
+                    'padding': 10,
+                    'margin': 10}} 
+                    onClick={() => handleAnswerClick(answer, currentQuestion)}
+                >{answer}
+                </button></li>
+                    
               ))}
             </ul>
           </div>

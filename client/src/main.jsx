@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import CreateQuiz from './pages/CreateQuiz';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile.jsx';
 import Error from './pages/Error';
 import Quiz from './pages/Quiz';
 
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         path: '/me',
         element: <Profile />
       }, {
-        path: '/profiles/:profileId',
+        path: '/profile/:profileId',
         element: <Profile />
       }, {
         path: '/create',

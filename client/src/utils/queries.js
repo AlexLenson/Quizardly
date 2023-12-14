@@ -41,17 +41,55 @@ query GetQuiz($quizId: ID!) {
   }
 }
 `;
-
-export const QUERY_ME = gql`
-query Me {
-  me {
-    username
-    score
-    quizzes {
-      _id
-      title
-      description
-    }
+export const QUERY_SINGLE_QUESTION = gql`
+query GetQuestion($questionId: ID!) {
+  getQuestion(questionId: $questionId) {
+    _id
+    question
+    correct_answer
+    incorrect_answers
   }
 }
 `;
+
+export const QUERY_ME = gql`
+query Me {
+    me {
+      username
+      _id
+      quizzes {
+        title
+        _id
+        category
+        description
+      }
+    }
+  }
+`;
+
+export const QUERY_USERS = gql`
+query GetUsers {
+  getUsers {
+    _id
+    username
+    quizzes {
+      _id
+      title
+      category
+    }
+  }
+}`;
+
+
+export const QUERY_QUIZZES = gql`
+query GetQuizzes {
+  getQuizzes {
+    title
+    _id
+    category
+    createdBy {
+      _id
+      username
+    }
+  }
+}`;

@@ -1,5 +1,5 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery, useQuery } from '@apollo/client';
 
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
@@ -24,8 +24,9 @@ import Sports from '../assets/TVImage.jpg'
 import './Home.css'
 
 
+
 const CarouselCategoryImages = [General, History, Games, TVMovies, Literature, Tech, Science, Math, PopCulture, Music, Food, Geography, Sports];
-const Categories = ["General", "History", " Games", "TVMovies", "Literature", " Tech", "Science", "Math", "PopCulture", "Music", " Food", "Geography", "Sports"]
+const Categories = ["General", "History", " Games", "TVMovies", "Literature", " Tech", "Science", "Math", "PopCulture", "Music", " Food", "Geography", "Sports"];
 
 const imageImports = {
   General,
@@ -41,16 +42,18 @@ const imageImports = {
   Food,
   Geography,
   Sports
-}
+};
 
 const Profile = () => {
-  console.log(window.location.href);
   const { profileId } = useParams();
   console.log("profileId:", profileId);
 
   const { loading, data } = useQuery(profileId ? QUERY_USER : QUERY_ME, {
     variables: { userId: profileId },
   });
+
+
+  console.log("data", data);
 
   const user = data?.me || data?.getUser || {};
   console.log("user", user);
@@ -59,17 +62,26 @@ const Profile = () => {
   console.log("here are the user's quizzes:", quizArray);
 
   // Extracting categories from quizArray
-  const quizCategories = quizArray.map((quiz) => quiz.category);
+  
+  const quizIds = quizArray.map((quiz) =>
+  quiz._id);
+
+  const quizCategories = quizArray.map((quiz) =>
+    quiz.category);
   console.log("Categories of user's quizzes:", quizCategories);
 
-  const importedImageArray = quizCategories.map(category => imageImports[category]);
+  const importedImageArray = quizCategories.map(category => `../../${imageImports[category]}`);
   console.log("importedImageArray", importedImageArray);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (
     Auth.loggedIn() &&
     /* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username, and compare it to the userParam variable */
     Auth.getProfile().authenticatedPerson.username === user.username
-  ) {
+  ) { 
+    console.log("lookat me",user);
     return (<><Navigate to="/me" /><div>
       <div className="flex-row justify-center mb-3">
         <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
@@ -77,19 +89,14 @@ const Profile = () => {
         </h2>
         <p> Score: {user.score}</p>
         <div className="col-12 col-md-10 mb-5">
+        <h1 className="homeh1">User Quizzes</h1>
         </div>
-        {/* Quizzes carosel */}
+        <CategoryCarousel images={importedImageArray} categories={quizCategories} quizIds={quizIds} quizArray={quizArray} />
       </div>
     </div></>
     );
-  }
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-
-  return (
+  }else
+  {return (
     <div>
       <div className="flex-row justify-center mb-3">
         <h2 className="col-12 col-md-8 bg-dark text-light p-3 mb-5">
@@ -103,11 +110,11 @@ const Profile = () => {
         {/* Quizzes carosel */}
         <h1 className="homeh1">User Quizzes</h1>
         <div className="carousel-quiz">
-          <CategoryCarousel images={importedImageArray} categories={quizCategories} />
+          <CategoryCarousel images={importedImageArray} categories={quizCategories} quizIds={quizIds} />
         </div>
       </div>
     </div>
   );
-};
+};}
 
 export default Profile;

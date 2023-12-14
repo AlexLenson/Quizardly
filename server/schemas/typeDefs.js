@@ -26,6 +26,8 @@ const typeDefs = `
     incorrect_answers: [String!]
   }
 
+
+
   type Auth {
     token: ID!
     user: User
