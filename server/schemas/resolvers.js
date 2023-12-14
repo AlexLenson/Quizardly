@@ -52,20 +52,13 @@ const resolvers = {
 
       return { token, user };
     },
-    createQuiz: async (parent, { title, description, questions, category }, context) => {
+    createQuiz: async (parent, { title, description, questionIds, category }, context) => {
       try {
-        
-        const questionIdArray = [];
-
-        questions.forEach(question => {
-         const newQuestion = Question.create({question})
-         questionIdArray.push(newQuestion._id);
-        });
 
         const quiz = await Quiz.create({
           title,
           description,
-          questionIds: questionIdArray,
+          questions: questionIds,
           category,
           createdBy: context.user._id
         });

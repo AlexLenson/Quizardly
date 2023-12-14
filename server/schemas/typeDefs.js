@@ -45,7 +45,7 @@ const typeDefs = `
     addUser(username: String!, password: String!): Auth
     loginUser(username: String!, password: String!): Auth
     createQuiz(title: String!, description: String, category: String!, questionIds: [ID!]): User
-    updateQuiz(quizId: ID!, title: String, description: String, questionIds: [ID]): Quiz
+    updateQuiz(quizId: ID!, title: String!, description: String!, questionIds: [ID!]): Quiz
     deleteQuiz(quizId: ID!): Quiz
     createQuestion(category: String!, type: String, difficulty: String, question: String!, correct_answer: String!, incorrect_answers: [String!]): Question
     updateQuestion(questionId: ID!, category: String, type: String, difficulty: String, question: String, correct_answer: String, incorrect_answers: [String!]): Question

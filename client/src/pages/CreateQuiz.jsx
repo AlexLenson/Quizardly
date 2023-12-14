@@ -19,12 +19,17 @@ const CreateQuiz = () => {
   const [quizDesc, setQuizDesc] = useState("");
   const [category, setCategory] = useState("");
   const [questionsArray, setQuestionsArray] = useState([]);
+  const [questionIds, setQuestionIds] = useState([]);
   const [CreateQuiz, { error, data }] = useMutation(CREATE_QUIZ);
 
   const addQuestion = (question) => {
     setQuestionsArray([...questionsArray, question]);
   };
 
+  const IdArray = (questionId) => {
+    setQuestionIds([...questionIds, questionId]);
+  };
+  
   const handleChange = async (event) => {
     event.preventDefault();
     const { name, value } = event.target;
@@ -47,7 +52,7 @@ const CreateQuiz = () => {
       variables: {
         title: quizTitle,
         category: category,
-        questions: [questionsArray],
+        questions: questionIds,
         description: quizDesc,
       },
     });
@@ -107,7 +112,7 @@ const CreateQuiz = () => {
         </Box>
       </div>
       <div>
-        <QuestionForm addQuestion={addQuestion} quizCategory={category} />
+        <QuestionForm addQuestion={addQuestion} quizCategory={category}  IdArray={IdArray}/>
       </div>
       <div>
         <QuestionList questions={questionsArray} />
