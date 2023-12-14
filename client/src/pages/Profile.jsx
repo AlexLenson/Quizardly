@@ -44,6 +44,7 @@ const imageImports = {
 }
 
 const Profile = () => {
+  console.log(window.location.href);
   const { profileId } = useParams();
   console.log("profileId:", profileId);
 
