@@ -10,7 +10,7 @@ const resolvers = {
       return User.findById(userId).populate('quizzes');
     },
     getQuizzes: async () => {
-      return Quiz.find();
+      return Quiz.find().populate('createdBy');
     },
     getQuiz: async (parent, { quizId }) => {
       return Quiz.findById(quizId).populate('questions').populate('createdBy');

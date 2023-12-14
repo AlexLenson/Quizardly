@@ -1,29 +1,26 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+query GetUser($userId: ID!) {
+  getUser(userId: $userId) {
+    _id
+    username
+    password
+    score
+    quizzes {
       _id
-      username
-      email
-      thoughts {
+      title
+      description
+      questions {
         _id
-        thoughtText
-        createdAt
       }
+      createdBy {
+        _id
+      }
+      category
     }
   }
-`;
-
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-    }
-  }
+}
 `;
 
 export const QUERY_SINGLE_QUIZ = gql`
@@ -37,22 +34,24 @@ query GetQuiz($quizId: ID!) {
       correct_answer
       incorrect_answers
     }
+    createdBy {
+      _id
+      username
+    }
   }
 }
 `;
 
 export const QUERY_ME = gql`
-  query me {
-    me {
+query Me {
+  me {
+    username
+    score
+    quizzes {
       _id
-      username
-      email
-      thoughts {
-        _id
-        thoughtText
-        thoughtAuthor
-        createdAt
-      }
+      title
+      description
     }
   }
+}
 `;

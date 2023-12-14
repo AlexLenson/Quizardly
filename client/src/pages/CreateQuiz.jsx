@@ -6,21 +6,39 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-
+import { Link } from 'react-router-dom';
 import QuestionForm from "../components/QuestionForm";
+import QuestionList from "../components/QuestionList";
 
 import { useState } from "react";
+import { CREATE_QUIZ } from "../utils/mutations";
+import Button from "@mui/material/Button";
+
 
 const CreateQuiz = () => {
   const [quizTitle, setQuizTitle] = useState("");
+  const [quizDesc, setQuizDesc] = useState("");
   const [category, setCategory] = useState("");
   const [questionsArray, setQuestionsArray] = useState([]);
+  const [questionIds, setQuestionIds] = useState([]);
+  const [CreateQuiz, { error, data }] = useMutation(CREATE_QUIZ);
+  const [quizMade, setQuizMade] = useState(false);
+  const [latestQuiz, setlatestQuiz] = useState({});
 
-const addQuestion = (question)=>{
-    setQuestionsArray([...questionsArray,question]);
-}
+  let quizID =[];
 
-  const handleChange = (event) => {
+  const addQuestion = async(question) => {
+    await setQuestionsArray([...questionsArray, question]);
+    console.log(questionsArray);
+  };
+
+  const IdArray =  async(questionId) => {
+   await setQuestionIds([...questionIds, questionId]);
+    console.log(questionIds);
+  };
+  
+  const handleChange = async (event) => {
+    event.preventDefault();
     const { name, value } = event.target;
 
     switch (name) {
@@ -31,12 +49,44 @@ const addQuestion = (question)=>{
         setCategory(value);
         break;
       default:
+        setQuizDesc(value);
         break;
     }
   };
 
+  const handleQuizButton = async () => {
+
+    console.log(questionIds);
+    const { data } = await CreateQuiz({
+      variables: {
+        title: quizTitle,
+        category: category,
+        description: quizDesc,
+        questionIds: questionIds,
+      },
+    });
+    
+    console.log(data.createQuiz.quizzes);
+    quizID = data.createQuiz.quizzes;
+    console.log(quizID)
+    setlatestQuiz(quizID[quizID.length-1]);  
+    console.log(latestQuiz._id);
+    
+    setQuizMade(true);
+
+  };
+
+ 
   return (
-    <div>
+   <>
+   <div>  
+     {quizMade ? ( <div> <h2>QUIZ CREATED</h2> 
+     <br />
+     <p>
+    <Link to={`/quiz/${latestQuiz._id}`}>Click here take it!</Link>
+    </p>
+     </div>) : (
+      <div>
       <h2>Create a Quiz</h2>
       <div className="col-9 col-lg-9 ">
         <input
@@ -48,11 +98,20 @@ const addQuestion = (question)=>{
           onChange={handleChange}
         ></input>
 
+        <input
+          name="quizDesc"
+          placeholder="Quiz Description"
+          value={quizDesc}
+          className=" w-100"
+          style={{ lineHeight: "1.5", resize: "vertical" }}
+          onChange={handleChange}
+        ></input>
+
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
             <InputLabel id="dropDown-label">Category</InputLabel>
             <Select
-            name="category"
+              name="category"
               labelId="dropDown-label"
               id="dropDown"
               value={category}
@@ -76,8 +135,17 @@ const addQuestion = (question)=>{
           </FormControl>
         </Box>
       </div>
-      <QuestionForm addQuestion = {addQuestion} category={category} />
-    </div>
+      <div>
+        <QuestionForm addQuestion={addQuestion} quizCategory={category}  IdArray={IdArray}/>
+      </div>
+      <div>
+        <QuestionList questions={questionsArray} />
+      </div>
+      <div>
+        <Button onClick={handleQuizButton}>Create quiz</Button>
+      </div>
+      </div>)}
+    </div> </>
   );
 };
 

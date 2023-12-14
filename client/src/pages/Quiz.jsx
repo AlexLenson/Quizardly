@@ -18,7 +18,9 @@ const Quiz = () => {
 
   const quiz = data?.getQuiz || {};
   const questionArray = quiz?.questions || [];
-  
+   console.log(quiz);
+
+
   if (data && data.getQuiz) {
 
     if (questionArray.length > 0) {
@@ -63,7 +65,7 @@ const Quiz = () => {
 
   const NextQuestion = () => {
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
+    if (nextQuestion < quiz.questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
@@ -80,6 +82,7 @@ const Quiz = () => {
     ) :showScore ? (
         <div className="result-container">
           <h2>Your Score: {score}</h2>
+            <h3>This quiz was made by: <a href={`../profiles/${quiz.createdBy._id}`}>{quiz.createdBy.username}</a></h3>
         </div>
       ) : (
         <div className="my-3">

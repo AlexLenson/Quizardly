@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Auth from '../../utils/auth';
+import Quizardly from '../../assets/quizardly.png'
+import './NavBar.css'
 
 const Header = () => {
   const logout = (event) => {
@@ -8,8 +10,8 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
+    <header>
+      <div>
         <div>
           
       <a href="/"> <img src={Quizardly} className="q-logo" height="85px" /> </a>
@@ -31,12 +33,18 @@ const Header = () => {
             </div>
           ) : (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
-                Login
+            <div className="navEl">
+            <Link to="/quiz"><button className="buttonstyle">
+              Create Question</button>
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
+              <Link to="/login"><button className="buttonstyle">
+                Login </button>
               </Link>
+              <Link to="/signup" >
+                <button className="buttonstyle">
+                Signup </button>
+              </Link>
+              </div>
             </>
           )}
         </div>
