@@ -2,18 +2,18 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import Button from "@mui/material/Button";
-import { CREATE_QUESTION } from "../../utils/mutations";
+import { CREATE_QUESTION, UPDATE_QUESTION } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
-const QuestionForm = ({addQuestion, IdArray, quizCategory}) => {
+const QuestionForm = ({ addQuestion, IdArray, quizCategory }) => {
   const [questionText, setQuestionText] = useState("");
   const [correctText, setCorrect] = useState("");
   const [incorrect1Text, setIncorrect1] = useState("");
   const [incorrect2Text, setIncorrect2] = useState("");
   const [incorrect3Text, setIncorrect3] = useState("");
 
-const[createQuestion, {error}]= useMutation(CREATE_QUESTION);
+  const [createQuestion, { error }] = useMutation(CREATE_QUESTION);
 
   const handleFormSubmit = async (event) => {
     const formData = {
@@ -23,7 +23,7 @@ const[createQuestion, {error}]= useMutation(CREATE_QUESTION);
       category: quizCategory,
     };
 
-    
+
 
     try {
       event.preventDefault();
@@ -35,7 +35,7 @@ const[createQuestion, {error}]= useMutation(CREATE_QUESTION);
           incorrectAnswers: [incorrect1Text, incorrect2Text, incorrect3Text],
         },
       });
-  
+
       console.log(data.createQuestion._id);
       addQuestion(formData);
       IdArray(data.createQuestion._id);
@@ -75,6 +75,33 @@ const[createQuestion, {error}]= useMutation(CREATE_QUESTION);
       default:
         setIncorrect3(value);
         break;
+    }
+
+  };
+
+  // Update a question
+
+  const [updateQuestion] = useMutation(UPDATE_QUESTION);
+
+  // Function to handle editing an existing question
+  const handleEditQuestion = async () => {
+    try {
+      // Construct the updated question data
+      const updatedQuestionData = {
+        questionId: questionIdToUpdate,
+        category: updatedCategory,
+        // Other updated fields...
+      };
+
+      // Trigger the UPDATE_QUESTION mutation
+      const { data } = await updateQuestion({
+        variables: updatedQuestionData,
+      });
+
+      // Handle any additional logic after successfully updating the question
+    } catch (error) {
+      // Handle errors
+      console.error(error);
     }
   };
 

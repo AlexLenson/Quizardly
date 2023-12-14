@@ -32,6 +32,10 @@
     margin-left: 30%;
   }
 
+  .delete-btn {
+      margin-left: 1vw;
+  }
+
 
 @keyframes floating {
     0% {

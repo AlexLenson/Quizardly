@@ -19,7 +19,7 @@ const QuestionList = ({questions = [] }) => {
                 <h5 className="card-header">
                   {question.question}
                 </h5>
-                <p className="card-body">{question.correct_answer}</p>
+                <p className="card-body">{question.correct_answer}</p><button className="edit-btn">Edit</button><button className="delete-btn">Delete</button>
               </div>
             </div>
           ))}
