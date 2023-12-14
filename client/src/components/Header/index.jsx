@@ -10,11 +10,11 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
+    <header>
+      <div>
         <div>
-          <Link className="text-light" to="/">
-       <h1 className="m-0" classId="titlefont"> <img src={Quizardly} className="q-logo" height="50px" />uizardly </h1>
+          <Link className="" to="/">
+       <h1 className="m-0"> <img src={Quizardly} className="q-logo" height="85px" /> </h1>
           </Link>
           <p className="m-0"></p>
         </div>
@@ -31,6 +31,7 @@ const Header = () => {
             </>
           ) : (
             <>
+            <div className="navEl">
             <Link to="/quiz"><button className="buttonstyle">
               Create Question</button>
               </Link>
@@ -41,7 +42,7 @@ const Header = () => {
                 <button className="buttonstyle">
                 Signup </button>
               </Link>
-              
+              </div>
             </>
           )}
         </div>

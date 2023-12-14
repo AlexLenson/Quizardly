@@ -4,6 +4,7 @@
 }
 
 .homeh1 {text-align: center;
+    font-family: 'Indie Flower', cursive;
 
 }
 
@@ -13,7 +14,7 @@
 
 .hero-image {
     padding: 4%;
-   margin-left: 27%;
+   margin-left: 28%;
     display: flex;
     justify-content: center ;
     justify-content: flex-start;

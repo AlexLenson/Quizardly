@@ -30,6 +30,7 @@ const Home = () => {
     <div className="hero" id="home">
         <div className="hero-overlay">
             
+            <h1 className="homeh1">Quizardly </h1>
             <img src={Quizardly} alt="Narvin" className="hero-image"/>
             <h1 className="homeh1">User Quizzes</h1>
             <div className="carousel-cat">

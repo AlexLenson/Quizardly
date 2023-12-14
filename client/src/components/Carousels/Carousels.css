@@ -13,8 +13,8 @@
   
   /* Style for each carousel image */
   .carousel-image {
-    max-width: 250px; /* Ensure the image doesn't exceed the container width */
-    max-height: 250px; /* Ensure the image doesn't exceed the container height */
+    max-width: 325px; /* Ensure the image doesn't exceed the container width */
+    max-height: 325px; /* Ensure the image doesn't exceed the container height */
   }
 
   .carousel-text {
