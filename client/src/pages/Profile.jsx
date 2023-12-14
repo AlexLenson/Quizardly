@@ -13,9 +13,9 @@ import History from '../assets/HistoryImage.jpg'
 import Games from '../assets/GamesImage.jpg'
 import TVMovies from '../assets/TVImage.jpg'
 import Literature from '../assets/LitImage.jpg'
-import Tech from '../assets/TechImg.png'
+import Tech from '../assets/TechImage.jpg'
 import Science from '../assets/ScienceImage.jpg'
-import Math from '../assets/MathImage.webp'
+import Math from '../assets/MathImage.jpg'
 import PopCulture from '../assets/PopCultureImage.jpg'
 import Music from '../assets/MusicImage.jpg'
 import Food from '../assets/FoodImage.jpg'
@@ -27,6 +27,22 @@ import './Home.css'
 const CarouselCategoryImages = [General, History, Games, TVMovies, Literature, Tech, Science, Math, PopCulture, Music, Food, Geography, Sports];
 const Categories = ["General", "History", " Games", "TVMovies", "Literature", " Tech", "Science", "Math", "PopCulture", "Music", " Food", "Geography", "Sports"]
 
+const imageImports = {
+  General,
+  History,
+  Games,
+  TVMovies,
+  Literature,
+  Tech,
+  Science,
+  Math,
+  PopCulture,
+  Music,
+  Food,
+  Geography,
+  Sports
+}
+
 const Profile = () => {
   const { profileId } = useParams();
   console.log("profileId:", profileId);
@@ -37,6 +53,17 @@ const Profile = () => {
 
   const user = data?.me || data?.getUser || {};
   console.log("user", user);
+  console.log("data", data);
+  const quizArray = user?.quizzes || [];
+  console.log("here are the user's quizzes:", quizArray);
+
+  // Extracting categories from quizArray
+  const quizCategories = quizArray.map((quiz) => quiz.category);
+  console.log("Categories of user's quizzes:", quizCategories);
+
+  const importedImageArray = quizCategories.map(category => imageImports[category]);
+  console.log("importedImageArray", importedImageArray);
+
   if (
     Auth.loggedIn() &&
     /* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username, and compare it to the userParam variable */
@@ -60,7 +87,6 @@ const Profile = () => {
     return <div>Loading...</div>;
   }
 
-  console.log("here are the user's quizzes:", user.quizzes.category);
 
   return (
     <div>
@@ -76,7 +102,7 @@ const Profile = () => {
         {/* Quizzes carosel */}
         <h1 className="homeh1">User Quizzes</h1>
         <div className="carousel-quiz">
-          <CategoryCarousel images={CarouselCategoryImages} categories={Categories} />
+          <CategoryCarousel images={importedImageArray} categories={quizCategories} />
         </div>
       </div>
     </div>
