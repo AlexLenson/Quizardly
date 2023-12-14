@@ -2,14 +2,24 @@ header {
     background-color: navy;
     display: flex;
     align-items: flex-end;
+    flex-wrap: wrap;
     
 }
+
+nav{
+    display: flex;
+}
+
+.btn{
+    background-color: aliceblue;
+}
 .navEl {
+    position: absolute;
+    left: 25%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     color: white;
-    position: fixed;
     top: 0;
    
     width: 100%;

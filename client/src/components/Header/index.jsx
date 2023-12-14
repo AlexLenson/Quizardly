@@ -11,7 +11,7 @@ const Header = () => {
   };
   return (
     <header>
-
+        <nav>
         <div>
           
         <a id="navLogo" href="/"><img src={Quizardly} className="q-logo" height="85px" /></a>
@@ -20,13 +20,13 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <div class="navEl">
-              <Link to="/create"><button className="btn btn-lg btn-info m-2">
+              <Link to="/create"><button className="btn btn-lg m-2">
               Create Quiz</button>
               <Link className="btn btn-lg btn-info m-2" to="/me">
                 {/* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username  */}
                 {Auth.getProfile().authenticatedPerson.username}'s profile
               </Link>
-              <button className="btn btn-lg btn-info m-2" onClick={logout}>
+              <button className="btn btn-lg  m-2" onClick={logout}>
                 Logout
               </button>                         
               </Link>
@@ -34,17 +34,18 @@ const Header = () => {
           ) : (
             <>
             <div className="navEl">
-              <Link to="/login"><button className="btn btn-lg btn-info m-2">
+              <Link to="/login"><button className="btn btn-lg m-2">
                 Login </button>
               </Link>
               <Link to="/signup" >
-                <button className="btn btn-lg btn-info m-2">
+                <button className="btn btn-lg  m-2">
                 Signup </button>
               </Link>
               </div>
             </>
           )}
         </div>
+</nav>
     </header>
   );
 };

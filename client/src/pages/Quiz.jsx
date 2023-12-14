@@ -81,41 +81,53 @@ const Quiz = () => {
   }
 
   return (
-    <div className="quiz-container">
+    <div className="quiz-container mt-5 p-2" style={{ 
+            border: "2px solid #1a1a1a",
+            top: '20%',
+            'border-radius': 8,
+            
+            }}>
       {loading ? ( // Check if data is still loading
       <p>Loading...</p>
     ) :showScore ? (
-        <div className="result-container">
+        <div className="result-container" >
           <h2>Your Score: {score}</h2>
             <h3>This quiz was made by: <a href={`../profile/${quiz.createdBy._id}`}>{quiz.createdBy.username}</a></h3>
         </div>
       ) : (
-        <div className="my-3">
+        <div className="my-3" style={{
+          fontFamily: 'Helvetica',
+        }}>
           {quiz && quiz.title ? ( // Check if quiz and its title exist
-          <h3 className="card-header bg-dark text-light p-2 m-0 ">{quiz.title}</h3>
+          <h3 className="card-header bg-dark text-white p-5 m-0 " style={{fontSize: "2.5rem", 'border-radius': 8,}} >{quiz.title}</h3>
         ) : (
           <p>No quiz title available</p>
         )}
-          <div className="bg-light py-4">
+          <div className=" py-4">
             <blockquote
               className="p-4"
               style={{
-                fontSize: "1.5rem",
+                fontSize: "2.5rem",
                 fontStyle: "italic",
-                border: "2px dotted #1a1a1a",
+                border: "2px solid #1a1a1a",
                 lineHeight: 1.5,
+                'border-radius': 8,
               }}
             >
               {quiz.questions[currentQuestion].question}
             </blockquote>
           </div>
-          <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
+          <div className="m-3 p-4" style={{ 
+            border: "2px solid #1a1a1a",
+            'border-radius': 8,
+            }}>
             <ul>
               {multipleChoice(currentQuestion).map((answer, index) => (
                 <li key={index} style={{
                   'margin':15,
                   'list-style': 'none'}}>
                   <button key={index} style={{
+                    fontSize: "2rem",
                     'border-radius': 8,
                     'justify': 'center',
                     'width': 150,
