@@ -149,9 +149,6 @@ const resolvers = {
         const updatedQuestion = await Question.findOneAndUpdate(
           { _id: questionId },
           { $set: {
-            category: category,
-            type: type,
-            difficulty: difficulty,
             question: question,
             correct_answer: correct_answer,
             incorrect_answers: incorrect_answers

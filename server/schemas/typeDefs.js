@@ -18,7 +18,7 @@ const typeDefs = `
 
   type Question {
     _id: ID
-    category: String!
+    category: String
     type: String
     difficulty: String
     question: String!
