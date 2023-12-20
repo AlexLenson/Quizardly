@@ -27,7 +27,7 @@ const Signup = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
-    if(password!=password2){
+    if(formState.password !== formState.password2){
       return;
     }
     try {
